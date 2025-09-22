@@ -63,16 +63,20 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
         
 
         <?php foreach ($filmes as $filme): ?>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div class="movie-item text-center">
-                    <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
-                        <img src="<?php echo htmlspecialchars($base_image_url . $filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
-                    </a>
-                    <h5 class="mt-2 movie-title-list"><?php echo htmlspecialchars($filme->title); ?></h5>
-                </div>
-            </div>
-        <?php endforeach; ?>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-3 mb-4">
+            <div class="movie-item text-center h-100">
+        <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
+            <img src="<?php echo htmlspecialchars($base_image_url . $filme->poster_path); ?>" 
+                class="img-fluid rounded small-poster" 
+                alt="<?php echo htmlspecialchars($filme->title); ?>"
+                style="height: 300px; object-fit: cover; width: 100%;">
+        </a>
+        <h5 class="mt-2 movie-title-list text-truncate" title="<?php echo htmlspecialchars($filme->title); ?>">
+            <?php echo htmlspecialchars($filme->title); ?>
+        </h5>
     </div>
+</div>
+
 
     <nav aria-label="Paginação de Filmes">
         <ul class="pagination justify-content-center mt-4">
