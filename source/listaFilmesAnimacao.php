@@ -42,9 +42,6 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
 <div class="container mt-5">
     <h1 class="text-center mb-4">Filmes de Animação</h1>
     <div class="row">
-        <div class="col-12 mb-4 text-center">
-            <a href="index.php" class="btn btn-primary">Voltar para a Página Inicial</a>
-        </div>
         <div class ="col-12">
             <div class="alert alert-info" role="alert">
                 Navegue pelos filmes de animação usando a paginação abaixo.
@@ -56,17 +53,10 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
             unset($_post['page']);
             if (count($_post) > 0) {
                 echo ' | Filtros Ativos: ';
-                foreach ($_post as $key => $value) {
-                    echo htmlspecialchars($key) . ' = ' . htmlspecialchars($value) . ' ';
-                }
-            }
-            while (count($filmes) < 12) {
-                $filmes[] = (object)[
-                    'id' => 0,
-                    'title' => 'N/A',
-                    'poster_path' => '/placeholder.png'
-                ];
-            }
+                foreach ($_post as $key => $value) 
+                { echo htmlspecialchars($key) . ' = ' . htmlspecialchars($value) . ' ';}}
+            while (count($filmes) < 12) 
+                {$filmes[] = (object)[ 'id' => 0, 'title' => 'N/A', 'poster_path' => '/placeholder.png'];}
             ?>
             </div>
         </div>
