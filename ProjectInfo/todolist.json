@@ -2,5 +2,6 @@
     "1": "Escolher uma categoria de filme e criar uma página para listar os filmes dessa categoria",
     "2": "Adicionar funcionalidade de busca por título em cada página de genero",
     "3": "Alterar a página de detalhes do filme com sinopse, elenco e mais informações relevantes do filme",
-    "4": "Implementar um sistema de avaliação e comentários para os filmes (salvamento local em json)"
+    "4": "Implementar um sistema de avaliação e comentários para os filmes (salvamento local em json)",
+    "5": "Criar uma página inicial com destaques escolha de categoria"
 }
