@@ -71,7 +71,7 @@ $generos_string = implode(', ', $generos_array);
                         </ul>
                     </div>
                     <div class="mt-4">
-                        <a href="detalhes.php" class="btn btn-primary">Voltar para a Lista</a>
+                        <a href="<?php echo htmlspecialchars($_SERVER['HTTP_REFERER'] ?? 'index.php'); ?>" class="btn btn-primary">Voltar para a Lista</a>
                     </div>
                 </div>
             </div>
