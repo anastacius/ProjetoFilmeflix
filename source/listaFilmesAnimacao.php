@@ -50,24 +50,25 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
         <div class = "filtro">
             <div class="alert alert-secondary" role="alert"> Filtro: Animação | Ordenação: Título (A-Z)
             <input type="button" class="btn btn-sm btn-outline-secondary" value="Limpar Filtros" onclick="window.location.href='listaFilmesAnimacao.php'">
-            <?php if (count($_GET) > 0) 
-            {
-                else if (count($_post) == 0) {
-                    echo ' | Nenhum filtro ativo.';
-                }
-            }
-            ?>
             <?php
+            foreach ($filmes as $filme) { if (!isset($filme->poster_path) || !$filme->poster_path) { $filme->poster_path = '/placeholder.png'; } }  
+            if (count($filmes) < 12) 
+                {$filmes[] = (object)[ 'id' => 0, 'title' => 'N/A', 'poster_path' => '/placeholder.png'];
+            }
             $_post = $_GET;
             unset($_post['page']);
             if (count($_post) > 0) {
                 echo ' | Filtros Ativos: ';
                 foreach ($_post as $key => $value) 
-                { echo htmlspecialchars($key) . ' = ' . htmlspecialchars($value) . ' ';}}
+                {
+                    echo htmlspecialchars($key) . ' = ' . htmlspecialchars($value) . ' ';   
+                }
+            }
             while (count($filmes) < 12) 
                 {$filmes[] = (object)[ 'id' => 0, 'title' => 'N/A', 'poster_path' => '/placeholder.png'];}
-            else { echo ' | Nenhum filtro ativo.'; } 
-            foreach ($filmes as $filme) { if (!isset($filme->poster_path) || !$filme->poster_path) { $filme->poster_path = '/placeholder.png'; } }
+            else { echo ' | Nenhum filtro ativo.'; }
+            $_GET = array();
+
             ?></div>
         </div>
 
