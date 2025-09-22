@@ -224,3 +224,112 @@ body.terror-page .pagination .page-item.active .page-link {
 }
 
 /* ====== ESTILOS APENAS PARA A PÁGINA DE DOCUMENTÁRIO FINAL ====== */ 
+
+
+/* CSS FICÇÃO CIENTIFICA :) */
+/* ======== FUNDO ANIMADO ESPACIAL ======== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    background: #000; /* fundo preto base */
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Camadas de estrelas */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    z-index: -1;
+    animation: spaceMove 120s linear infinite;
+    opacity: 0.6;
+}
+
+body::after {
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    animation: spaceMove 200s linear infinite reverse;
+    opacity: 0.4;
+}
+
+/* Animação lenta para criar efeito de profundidade */
+@keyframes spaceMove {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-100px, -200px); }
+}
+
+/* ======== CARTÕES DE FILMES ======== */
+.card {
+    background: rgba(20, 20, 40, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.6);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00eaff;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* ======== BOTÕES E FILTROS ======== */
+.btn-primary {
+    background: linear-gradient(135deg, #00eaff, #0077ff);
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0077ff, #00eaff);
+    box-shadow: 0 0 15px #00eaff;
+}
+
+/* ======== FORMULÁRIOS ======== */
+.form-select, .form-control {
+    background: rgba(0, 0, 30, 0.8);
+    border: 1px solid #00eaff;
+    color: #fff;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: #00eaff;
+    box-shadow: 0 0 10px #00eaff;
+}
+
+/* ======== PAGINAÇÃO ======== */
+.page-link {
+    background: rgba(0, 0, 30, 0.9);
+    border: 1px solid #00eaff;
+    color: #00eaff;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover {
+    background: #00eaff;
+    color: #000;
+}
+
+/* ======== TÍTULOS ======== */
+h1, h4 {
+    text-shadow: 0 0 10px #00eaff, 0 0 20px #0077ff;
+}
+/* FIM DO CSS DE FICÇÃO CIENTIFICA */
