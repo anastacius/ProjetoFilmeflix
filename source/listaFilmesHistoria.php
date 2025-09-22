@@ -1,10 +1,10 @@
-<!-- Laiz 
+<!-- Geraldo história -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes de Comédia</title>
+    <title>Filmes de Ação</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="./styles/style.css">
 </head>
@@ -13,7 +13,7 @@
 <?php
 $pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $api_key = '304354587f5fcd1ae0898cf39f4dc337';
-$genero_id = 35;
+$genero_id = 36;
 $idioma = 'pt-BR';
 $ordenacao = 'title.asc';
 
@@ -39,7 +39,7 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
 
 ?>
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Filmes de Comédia</h1>
+    <h1 class="text-center mb-4">Filmes de Ação</h1>
     <div class="row">
         <?php foreach ($filmes as $filme): ?>
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
