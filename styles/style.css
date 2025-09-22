@@ -100,3 +100,127 @@ body.terror-page .pagination .page-item.active .page-link {
     color: #fff;
 }
 /* ====== ESTILOS APENAS PARA A PÁGINA DE TERROR FINAL ====== */ 
+
+
+/* ============================================= */
+/* --- ESTILOS EXCLUSIVOS PARA DOCUMENTÁRIOS --- */
+/* ============================================= */
+
+/* Importando fontes do Google para um visual mais refinado */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;700&display=swap');
+
+/* O seletor .page-documentario garante que estes estilos SÓ se apliquem à página de documentários */
+.page-documentario {
+    background-color: #1a1a1a; /* Um fundo escuro, quase preto */
+    
+    /* ATUALIZE AQUI com a imagem que você baixou */
+    background-image: url('../images/CINEMA\ -\ IMAGEM\ DE\ FUNDO\ DOCUMENTARIOS.jpg'); 
+    
+    background-size: cover;
+    background-attachment: fixed;
+    color: #e0e0e0; /* Cor do texto principal levemente acinzentada */
+    font-family: 'Montserrat', sans-serif; /* Fonte moderna para o corpo */
+}
+
+/* Título principal da página */
+.page-documentario h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #d4af37; /* Um dourado/mostarda pálido como cor de destaque */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #d4af37;
+    display: inline-block; /* Faz a borda ter o tamanho do texto */
+}
+
+/* Estilização do formulário de busca e ordenação */
+.page-documentario .form-control,
+.page-documentario .form-select {
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+.page-documentario .form-control::placeholder {
+    color: #888;
+}
+
+.page-documentario .form-control:focus,
+.page-documentario .form-select:focus {
+    background-color: #333;
+    color: #fff;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25); /* Sombra do foco com a cor de destaque */
+}
+
+/* Botão principal */
+.page-documentario .btn-primary {
+    background-color: #d4af37;
+    border-color: #d4af37;
+    color: #1a1a1a;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.page-documentario .btn-primary:hover {
+    background-color: #c8a02b;
+    border-color: #c8a02b;
+    transform: scale(1.05);
+}
+
+/* Card do Filme - agora com classe única */
+.movie-item-documentario {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    height: 100%;
+}
+
+.movie-item-documentario:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
+    border-color: #d4af37;
+}
+
+.movie-item-documentario img {
+    border-radius: 5px;
+}
+
+/* Título do filme - classe única e fonte diferente */
+.movie-title-documentario {
+    font-family: 'Lora', serif; /* Fonte com serifa para um toque clássico */
+    font-size: 0.9rem;
+    color: #f5f5f5;
+    margin-top: 10px;
+    min-height: 40px; /* Garante alinhamento dos cards */
+}
+
+/* Estilização da Paginação */
+.page-documentario .pagination .page-link {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    color: #d4af37;
+}
+
+.page-documentario .pagination .page-link:hover {
+    background-color: #333;
+}
+
+.page-documentario .pagination .page-item.active .page-link {
+    background-color: #d4af37;
+    border-color: #d4af37;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.page-documentario .pagination .page-item.disabled .page-link {
+    background-color: #222;
+    color: #555;
+    border-color: #333;
+}
+
+/* ====== ESTILOS APENAS PARA A PÁGINA DE DOCUMENTÁRIO FINAL ====== */ 
