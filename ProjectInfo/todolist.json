@@ -4,5 +4,6 @@
     "3": "(Uma dupla) Alterar a página de detalhes do filme com sinopse, elenco e mais informações relevantes do filme",
     "4": "(Todos) Implementar um sistema de avaliação e comentários para os filmes (salvamento local em json)",
     "5": "(Uma dupla)  uma página inicial com destaques escolha de categoria",
-    "6": "(uma pessoa só) corrigir imagens que não aparecem (criar uma imagem padrao para filmes sem imagem)"
+    "6": "(uma pessoa só) corrigir imagens que não aparecem (criar uma imagem padrao para filmes sem imagem)",
+    "7": "(TODOS) Criar modo de exibição de filmes ordenado por votação, alfabética e filmes populares (com mais de mil votos)"
 }
