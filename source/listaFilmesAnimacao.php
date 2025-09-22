@@ -14,7 +14,7 @@
 <?php
 $pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $api_key = '304354587f5fcd1ae0898cf39f4dc337';
-$genero_id = 28;
+$genero_id = 16; // ID do gênero Animação
 $idioma = 'pt-BR';
 $ordenacao = 'title.asc';
 
@@ -40,7 +40,7 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
 
 ?>
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Filmes de Ação</h1>
+    <h1 class="text-center mb-4">Filmes de Animação</h1>
     <div class="row">
         <?php foreach ($filmes as $filme): ?>
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
