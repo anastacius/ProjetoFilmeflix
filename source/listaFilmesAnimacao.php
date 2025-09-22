@@ -43,12 +43,21 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
     <h1 class="text-center mb-4">Filmes de Animação</h1>
     <div class="row">
         <div class ="col-12">
-            <div class="alert alert-info" role="alert">
+            <div class="actions" role="alert">
                 Navegue pelos filmes de animação usando a paginação abaixo.
             </div>
         </div>
         <div class = "filtro">
-            <div class="alert alert-secondary" role="alert"> Filtro: Animação | Ordenação: Título (A-Z)<?php
+            <div class="alert alert-secondary" role="alert"> Filtro: Animação | Ordenação: Título (A-Z)
+            <input type="button" class="btn btn-sm btn-outline-secondary" value="Limpar Filtros" onclick="window.location.href='listaFilmesAnimacao.php'">
+            <?php if (count($_GET) > 0) 
+            {
+                else if (count($_post) == 0) {
+                    echo ' | Nenhum filtro ativo.';
+                }
+            }
+            ?>
+            <?php
             $_post = $_GET;
             unset($_post['page']);
             if (count($_post) > 0) {
@@ -57,10 +66,10 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
                 { echo htmlspecialchars($key) . ' = ' . htmlspecialchars($value) . ' ';}}
             while (count($filmes) < 12) 
                 {$filmes[] = (object)[ 'id' => 0, 'title' => 'N/A', 'poster_path' => '/placeholder.png'];}
-            ?>
-            </div>
+            else { echo ' | Nenhum filtro ativo.'; } 
+            foreach ($filmes as $filme) { if (!isset($filme->poster_path) || !$filme->poster_path) { $filme->poster_path = '/placeholder.png'; } }
+            ?></div>
         </div>
-        
 
         <?php foreach ($filmes as $filme): ?>
             <div class="col-6 col-sm-4 col-md-3 col-lg-3 mb-4">
@@ -69,7 +78,7 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
             <img src="<?php echo htmlspecialchars($base_image_url . $filme->poster_path); ?>" 
                 class="img-fluid rounded small-poster" 
                 alt="<?php echo htmlspecialchars($filme->title); ?>"
-                style="height: 300px; object-fit: cover; width: 100%;">
+            style="height: 300px; object-fit: cover; width: 100%;">
         </a>
         <h5 class="mt-2 movie-title-list text-truncate" title="<?php echo htmlspecialchars($filme->title); ?>">
             <?php echo htmlspecialchars($filme->title); ?>
