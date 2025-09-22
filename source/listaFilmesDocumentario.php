@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentários</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/style.css">
+    
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
-<body>
+<body class="page-documentario">
 
 <?php
 // --- CONFIGURAÇÕES INICIAIS ---
 $pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$api_key = '304354587f5fcd1ae0898cf39f4dc337';
-$genero_id = 99; // Documentário
+// Lembre-se de manter sua chave da API segura.
+$api_key = '304354587f5fcd1ae0898cf39f4dc337'; 
+$genero_id = 99; // ID para o gênero Documentário
 $idioma = 'pt-BR';
 
 // --- CAPTURA DE INPUTS DO USUÁRIO ---
@@ -37,12 +40,12 @@ if (!empty($termo_busca)) {
     // MODO DESCOBERTA (NAVEGAÇÃO): A ordenação é aplicada.
     $url_base_discover = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_atual}&language={$idioma}";
     
-    // Constrói a URL com a ordenação
+    // Constrói a URL com a ordenação selecionada
     $url = $url_base_discover . '&sort_by=' . urlencode($ordenacao_selecionada);
 
     // Caso especial para "Populares": adiciona filtro de contagem de votos
     if ($ordenacao_selecionada === 'popularity.desc') {
-        $url .= '&vote_count.gte=1000'; // gte = Greater Than or Equal (Maior ou igual a)
+        $url .= '&vote_count.gte=1000'; // gte = Greater Than or Equal (Maior ou igual a 1000)
     }
 }
 
@@ -99,11 +102,11 @@ if (!empty($termo_busca) && !empty($filmes)) {
             <?php foreach ($filmes as $filme): ?>
                 <?php if (!empty($filme->poster_path)): ?>
                     <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                        <div class="movie-item text-center">
+                        <div class="movie-item-documentario text-center"> 
                             <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
                                 <img src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
                             </a>
-                            <h5 class="mt-2 movie-title-list"><?php echo htmlspecialchars($filme->title); ?></h5>
+                            <h5 class="mt-2 movie-title-documentario"><?php echo htmlspecialchars($filme->title); ?></h5>
                         </div>
                     </div>
                 <?php endif; ?>
