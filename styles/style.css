@@ -326,9 +326,9 @@ h1 {
 /* Corpo da página Crime */
 body.crime-page {
     background-color: #121212; /* fundo escuro */
+    background-image: url('../images/157.jpg'); 
     color: #e5e5e5;
     font-family: 'Roboto', sans-serif;
-    background-image: url('../images/crime-bg.jpg'); /* coloque aqui sua imagem temática de crime */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -337,13 +337,13 @@ body.crime-page {
 /* Título principal */
 body.crime-page h1 {
     font-weight: 700;
-    color: #e50914; /* vermelho intenso */
+    color: #fffb00; /* vermelho intenso */
     text-transform: uppercase;
     letter-spacing: 2px;
     border-bottom: 3px solid #1f77d0; /* azul policial */
     display: inline-block;
     padding-bottom: 5px;
-    text-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
+    text-shadow: 0 0 10px rgba(255, 238, 0, 0.7);
 }
 
 /* Cards de filmes */
@@ -369,7 +369,7 @@ body.crime-page .small-poster {
 
 body.crime-page .small-poster:hover {
     transform: scale(1.08);
-    box-shadow: 0 0 15px rgba(229, 9, 20, 0.5),
+    box-shadow: 0 0 15px rgba(229, 214, 9, 0.5),
                 0 0 25px rgba(31, 119, 208, 0.3);
 }
 
@@ -397,7 +397,7 @@ body.crime-page a:hover {
 body.crime-page .pagination .page-link {
     background-color: #1a1a1a;
     border: 1px solid #444;
-    color: #e50914;
+    color: #fffb00;
     transition: all 0.2s ease;
 }
 
@@ -407,8 +407,8 @@ body.crime-page .pagination .page-link:hover {
 }
 
 body.crime-page .pagination .page-item.active .page-link {
-    background-color: #e50914;
-    border-color: #e50914;
+    background-color: #e5e109;
+    border-color:#e5e109;
     color: #fff;
     font-weight: bold;
 }
