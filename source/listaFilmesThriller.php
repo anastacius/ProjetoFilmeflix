@@ -2,7 +2,7 @@
 // --- CONFIGURAÇÕES INICIAIS ---
 $pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $api_key = '304354587f5fcd1ae0898cf39f4dc337';
-$genero_id = 27; // Terror
+$genero_id = 53; // Thriller
 $idioma = 'pt-BR';
 
 // --- CAPTURA DE INPUTS DO USUÁRIO ---
@@ -11,10 +11,10 @@ $termo_busca = isset($_GET['busca']) ? $_GET['busca'] : '';
 $ordenacao_selecionada = isset($_GET['ordenacao']) ? $_GET['ordenacao'] : 'popularity.desc';
 
 // --- CLASSE PARA ESTILIZAÇÃO DA PÁGINA ---
-$pageClass = "terror-page";
+$pageClass = "thriller-page";
 
 // --- LÓGICA PARA MONTAR A URL DA API ---
-$titulo_pagina = 'Filmes de Terror';
+$titulo_pagina = 'Filmes Thriller';
 $parametros_paginacao = '&ordenacao=' . urlencode($ordenacao_selecionada);
 $url = '';
 
@@ -68,7 +68,7 @@ if (!empty($termo_busca) && !empty($filmes)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
-<body class="terror-page">
+<body class="thriller-page">
 
 <div class="container mt-5">
     
@@ -77,7 +77,7 @@ if (!empty($termo_busca) && !empty($filmes)) {
     <form action="" method="GET" class="mb-4">
         <div class="row g-2">
             <div class="col-md-8">
-                <input type="text" name="busca" class="form-control" placeholder="Buscar em filmes de terror..." value="<?php echo htmlspecialchars($termo_busca); ?>">
+                <input type="text" name="busca" class="form-control" placeholder="Buscar em filmes thriller..." value="<?php echo htmlspecialchars($termo_busca); ?>">
             </div>
             <div class="col-md-3">
                 <select name="ordenacao" class="form-select">
@@ -108,7 +108,7 @@ if (!empty($termo_busca) && !empty($filmes)) {
             <?php endforeach; ?>
         <?php else: ?>
             <div class="alert alert-warning" role="alert">
-                Nenhum filme de terror encontrado com este critério.
+                Nenhum filme de Thriller encontrado com este critério.
             </div>
         <?php endif; ?>
     </div>
