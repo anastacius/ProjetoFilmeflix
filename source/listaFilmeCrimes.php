@@ -1,55 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentários</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="../styles/style.css">
-</head>
-<body class="page-documentario">
-
 <?php
 // --- CONFIGURAÇÕES INICIAIS ---
 $pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-// Lembre-se de manter sua chave da API segura.
-$api_key = '304354587f5fcd1ae0898cf39f4dc337'; 
-$genero_id = 99; // ID para o gênero Documentário
+$api_key = '304354587f5fcd1ae0898cf39f4dc337';
+$genero_id = 80; // Crime
 $idioma = 'pt-BR';
 
 // --- CAPTURA DE INPUTS DO USUÁRIO ---
 $termo_busca = isset($_GET['busca']) ? $_GET['busca'] : '';
-// Opção de ordenação com 'popularity.desc' como padrão
+// Ordenação padrão: popularidade
 $ordenacao_selecionada = isset($_GET['ordenacao']) ? $_GET['ordenacao'] : 'popularity.desc';
 
+// --- CLASSE PARA ESTILIZAÇÃO DA PÁGINA ---
+$pageClass = "crime-page";
+
 // --- LÓGICA PARA MONTAR A URL DA API ---
-$titulo_pagina = 'Documentários';
+$titulo_pagina = 'Filmes de Crime';
 $parametros_paginacao = '&ordenacao=' . urlencode($ordenacao_selecionada);
 $url = '';
 
 if (!empty($termo_busca)) {
-    // MODO BUSCA: A ordenação é ignorada pela API, que sempre usa relevância.
+    // MODO BUSCA
     $query_busca = urlencode($termo_busca);
     $url = "https://api.themoviedb.org/3/search/movie?api_key={$api_key}&query={$query_busca}&page={$pagina_atual}&language={$idioma}";
     $titulo_pagina = 'Resultados para: "' . htmlspecialchars($termo_busca) . '"';
     $parametros_paginacao .= '&busca=' . $query_busca;
-
 } else {
-    // MODO DESCOBERTA (NAVEGAÇÃO): A ordenação é aplicada.
+    // MODO DESCOBERTA
     $url_base_discover = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_atual}&language={$idioma}";
-    
-    // Constrói a URL com a ordenação selecionada
     $url = $url_base_discover . '&sort_by=' . urlencode($ordenacao_selecionada);
 
-    // Caso especial para "Populares": adiciona filtro de contagem de votos
     if ($ordenacao_selecionada === 'popularity.desc') {
-        $url .= '&vote_count.gte=1000'; // gte = Greater Than or Equal (Maior ou igual a 1000)
+        $url .= '&vote_count.gte=1000';
     }
 }
 
-// --- CHAMADA À API E PROCESSAMENTO DE DADOS ---
+// --- CHAMADA À API ---
 $json_string = @file_get_contents($url);
 if ($json_string === false) {
     die('<div class="alert alert-danger" role="alert">Erro ao se conectar com a API do TMDB.</div>');
@@ -63,7 +48,7 @@ if ($filmes_data && isset($filmes_data->results)) {
     $total_paginas = $filmes_data->total_pages;
 }
 
-// Filtra os resultados da busca por gênero (só executa em modo busca)
+// Filtra resultados da busca por gênero
 if (!empty($termo_busca) && !empty($filmes)) {
     $filmes_filtrados = [];
     foreach ($filmes as $filme) {
@@ -74,6 +59,16 @@ if (!empty($termo_busca) && !empty($filmes)) {
     $filmes = $filmes_filtrados;
 }
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $titulo_pagina; ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body class="<?php echo $pageClass; ?>">
 
 <div class="container mt-5">
     
@@ -82,7 +77,7 @@ if (!empty($termo_busca) && !empty($filmes)) {
     <form action="" method="GET" class="mb-4">
         <div class="row g-2">
             <div class="col-md-8">
-                <input type="text" name="busca" class="form-control" placeholder="Buscar em documentários..." value="<?php echo htmlspecialchars($termo_busca); ?>">
+                <input type="text" name="busca" class="form-control" placeholder="Buscar em filmes de crime..." value="<?php echo htmlspecialchars($termo_busca); ?>">
             </div>
             <div class="col-md-3">
                 <select name="ordenacao" class="form-select">
@@ -92,39 +87,31 @@ if (!empty($termo_busca) && !empty($filmes)) {
                 </select>
             </div>
             <div class="col-md-1 d-grid">
-                <button class="btn btn-primary" type="submit">Filtrar</button>
+                <button class="btn btn-dark" type="submit">Filtrar</button>
             </div>
         </div>
     </form>
     
- <div class="row">
-    <?php if (!empty($filmes)): ?>
-        <?php foreach ($filmes as $filme): ?>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div class="movie-item-documentario text-center">
-                    <?php
-                        $base_image_url = 'https://image.tmdb.org/t/p/w500';
-
-                        // Caminho para a sua imagem padrão local
-                        $placeholder_path = '../images/bolso.png'; 
-
-                        $poster_url = !empty($filme->poster_path)
-                            ? $base_image_url . $filme->poster_path
-                            : $placeholder_path;
-                    ?>
-                    <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
-                        <img src="<?php echo htmlspecialchars($poster_url); ?>" class="img-fluid rounded small-poster" alt="Pôster de <?php echo htmlspecialchars($filme->title); ?>">
-                    </a>
-                    <h5 class="mt-2 movie-title-documentario"><?php echo htmlspecialchars($filme->title); ?></h5>
-                </div>
+    <div class="row">
+        <?php if (!empty($filmes)): ?>
+            <?php foreach ($filmes as $filme): ?>
+                <?php if (!empty($filme->poster_path)): ?>
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                        <div class="movie-item text-center">
+                            <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
+                                <img src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
+                            </a>
+                            <h5 class="mt-2 movie-title-list"><?php echo htmlspecialchars($filme->title); ?></h5>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="alert alert-warning" role="alert">
+                Nenhum filme de crime encontrado com este critério.
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <div class="col-12">
-            <p class="text-center text-muted">Nenhum filme encontrado.</p>
-        </div>
-    <?php endif; ?>
-</div>
+        <?php endif; ?>
+    </div>
 
     <?php if ($total_paginas > 1): ?>
     <nav aria-label="Paginação de Filmes">

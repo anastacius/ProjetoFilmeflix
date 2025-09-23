@@ -43,31 +43,41 @@ a {
 }
 
 /* ====== ESTILOS APENAS PARA A PÁGINA DE TERROR ====== */
+/* ====== ESTILOS APENAS PARA A PÁGINA DE TERROR ====== */
 body.terror-page {
-    background-color: #0d0d0d; 
+    background-image: url(../images/fundoterror.png); /* coloque sua imagem aqui */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
     color: #f1f1f1;
     font-family: "Cinzel", serif;
 }
-
 
 body.terror-page .movie-card {
     background-color: #1a1a1a;
     border: 1px solid #800000;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    transition: border 0.3s, box-shadow 0.3s;
 }
 
+body.terror-page .movie-card:hover {
+    border: 1px solid #ff0000; /* borda vermelha no hover */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
 
 body.terror-page .small-poster {
     border: 2px solid #660000;
     filter: brightness(0.8) contrast(1.1);
-    transition: transform 0.3s, filter 0.3s;
+    transition: transform 0.3s, filter 0.3s, border 0.3s;
 }
 
 body.terror-page .small-poster:hover {
     transform: scale(1.1) rotate(-1deg);
     filter: brightness(1) contrast(1.2);
+    border: 2px solid #ff0000; /* borda vermelha no hover */
 }
-
 
 body.terror-page .movie-title,
 body.terror-page .movie-title-list {
@@ -75,7 +85,6 @@ body.terror-page .movie-title-list {
     text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.6);
     font-weight: 700;
 }
-
 
 body.terror-page a {
     color: #ff4444;
@@ -86,7 +95,6 @@ body.terror-page a:hover {
     color: #ff0000;
     text-shadow: 0 0 8px #ff0000;
 }
-
 
 body.terror-page .pagination .page-link {
     background-color: #1a1a1a;
@@ -99,6 +107,8 @@ body.terror-page .pagination .page-item.active .page-link {
     border-color: #ff0000;
     color: #fff;
 }
+
+
 /* ====== ESTILOS APENAS PARA A PÁGINA DE TERROR FINAL ====== */ 
 
 
@@ -223,112 +233,383 @@ body.terror-page .pagination .page-item.active .page-link {
     border-color: #333;
 }
 
+/* PÁGINA DE GUERRA - INICIO */
+body {
+    background-image: url('../images/guerra.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    color: #f8f9fa;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.container {
+    background: rgba(34, 40, 49, 0.92);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.37);
+    padding: 32px 24px;
+}
+
+h1 {
+    color: #f1f1f1ff;
+    margin-top: 20px;
+    margin-bottom: -80px;
+    font-size: 50;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px #222831;
+}
+
+.movie-item {
+    background: rgba(44, 62, 80, 0.7);
+    border-radius: 12px;
+    padding: 12px 6px;
+    box-shadow: 0 2px 8px rgba(34, 40, 49, 0.18);
+    transition: transform 0.2s;
+}
+
+.movie-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(230, 57, 70, 0.25);
+}
+
+.movie-title-list {
+    color: #a8dadc;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 8px;
+    text-shadow: 1px 1px 4px #222831;
+}
+
+.small-poster {
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #e63946;
+    background: #222831;
+}
+
+.input-group .form-control {
+    background: rgba(44, 62, 80, 0.5);
+    color: #f8f9fa;
+    border: 1px solid #e63946;
+}
+
+.input-group .btn-primary {
+    background-color: #e63946;
+    border-color: #e63946;
+    color: #fff;
+}
+
+.form-select {
+    background: rgba(44, 62, 80, 0.5);
+    color: #f8f9fa;
+    border: 1px solid #e63946;
+}
+
+.pagination .page-link {
+    background: rgba(44, 62, 80, 0.7);
+    color: #e63946;
+    border: 1px solid #e63946;
+}
+
+.pagination .active .page-link,
+.pagination .page-link:hover {
+    background: #e63946;
+    color: #fff;
+    border-color: #e63946;
+}
+
+.alert {
+    border-radius: 10px;
+    font-weight: 500;
+}
+/* PÁGINA DE GUERRA - FIM */
+
 /* ====== ESTILOS APENAS PARA A PÁGINA DE DOCUMENTÁRIO FINAL ====== */ 
 
+/* ============================================= */
+/* --- ESTILOS EXCLUSIVOS PARA FILMES DE CRIME --*/
+/* ============================================= */
 
-/* CSS FICÇÃO CIENTIFICA :) */
-
-/* ---------- GERAL ---------- */
-body.sc-body {
-    background: url('../images/espaco.jpg') no-repeat center center fixed;
+/* Corpo da página Crime */
+body.crime-page {
+    background-color: #121212; /* fundo escuro */
+    background-image: url('../images/157.jpg'); 
+    color: #e5e5e5;
+    font-family: 'Roboto', sans-serif;
     background-size: cover;
-    font-family: 'Orbitron', sans-serif;
-    min-height: 100vh;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-
-/* ---------- TÍTULO PRINCIPAL ---------- */
-.sc-title {
-    font-size: 2.5rem;
-    color: #00ffff;
-    text-shadow: 0 0 10px #00ffff, 0 0 20px #003b4d;
-    text-align: center;
+/* Título principal */
+body.crime-page h1 {
+    font-weight: 700;
+    color: #fffb00; /* vermelho intenso */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #1f77d0; /* azul policial */
+    display: inline-block;
+    padding-bottom: 5px;
+    text-shadow: 0 0 10px rgba(255, 238, 0, 0.7);
 }
 
-/* ---------- FORMULÁRIOS ---------- */
-.sc-form-control,
-.sc-form-select {
-    background-color: #1b263b;
-    border: 1px solid #00ffff;
-    color: #ffffff;
+/* Cards de filmes */
+body.crime-page .movie-card {
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid #333;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
-.sc-form-control::placeholder {
-    color: #99c9ff;
+body.crime-page .movie-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3),
+                0 0 15px rgba(31, 119, 208, 0.2);
 }
 
-.sc-btn-primary {
-    background: linear-gradient(145deg, #00ffff, #007bff);
-    color: #000000;
-    border: none;
+/* Posters */
+body.crime-page .small-poster {
+    border-radius: 8px;
+    border: 2px solid #222;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.crime-page .small-poster:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(229, 214, 9, 0.5),
+                0 0 25px rgba(31, 119, 208, 0.3);
+}
+
+/* Títulos dos filmes */
+body.crime-page .movie-title,
+body.crime-page .movie-title-list {
+    color: #fff;
+    font-weight: 600;
+    margin-top: 8px;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+}
+
+/* Links */
+body.crime-page a {
+    color: #e50914;
+    transition: color 0.2s;
+}
+
+body.crime-page a:hover {
+    color: #1f77d0;
+    text-shadow: 0 0 6px #1f77d0;
+}
+
+/* Paginação */
+body.crime-page .pagination .page-link {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: #fffb00;
+    transition: all 0.2s ease;
+}
+
+body.crime-page .pagination .page-link:hover {
+    background-color: #1f77d0;
+    color: #fff;
+}
+
+body.crime-page .pagination .page-item.active .page-link {
+    background-color: #e5e109;
+    border-color:#e5e109;
+    color: #fff;
     font-weight: bold;
-    box-shadow: 0 0 8px #00ffff;
+}
+
+body.crime-page .pagination .page-item.disabled .page-link {
+    background-color: #111;
+    border-color: #333;
+    color: #555;
+}
+/* ====== ESTILOS APENAS PARA A PÁGINA DE CRIME FINAL ====== */
+
+/*  FAROESTE APENAS MEUS ATIRADORES  */
+body {
+    margin: 0;
+    padding: 0;
+    background: #2b1e18 url('https://i.ibb.co/nDCyWRd/texture-old-paper.jpg') repeat;
+    color: #f8e5c2;
+    font-family: 'Georgia', serif;
+}
+
+/* ====== CONTAINER GERAL ====== */
+.faroeste-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(32, 19, 14, 0.85);
+    border: 4px solid #7a1b1b;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+}
+
+/* ====== TÍTULO ====== */
+.faroeste-titulo {
+    font-family: 'Rock Salt', cursive, 'Georgia', serif;
+    text-align: center;
+    font-size: 3rem;
+    color: #d24d3e;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 35px;
+    text-shadow: 2px 2px 0 #000, 4px 4px 6px rgba(0,0,0,0.6);
+    border-bottom: 3px solid #7a1b1b;
+    padding-bottom: 10px;
+}
+
+/* ====== FORMULÁRIO ====== */
+.faroeste-form {
+    margin-bottom: 40px;
+    background: rgba(20, 12, 9, 0.8);
+    padding: 20px;
+    border: 2px solid #7a1b1b;
+    border-radius: 8px;
+}
+
+.faroeste-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.faroeste-input-text,
+.faroeste-select {
+    flex: 1;
+    min-width: 220px;
+    background: #3b2a23;
+    border: 2px solid #7a1b1b;
+    padding: 10px 12px;
+    color: #f8e5c2;
+    font-size: 1rem;
+    border-radius: 6px;
+}
+
+.faroeste-input-text::placeholder {
+    color: #d1bba0;
+}
+
+.faroeste-btn {
+    background: #7a1b1b;
+    border: 2px solid #511212;
+    color: #f8e5c2;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.sc-btn-primary:hover {
-    background: linear-gradient(145deg, #007bff, #00ffff);
-    box-shadow: 0 0 12px #00ffff;
+.faroeste-btn:hover {
+    background: #b53030;
 }
 
-/* ---------- CARTÕES DE FILMES ---------- */
-.sc-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid #00ffff33;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+/* ====== GRID DE FILMES ====== */
+.faroeste-filmes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.faroeste-filme-card {
+    background: rgba(0,0,0,0.55);
+    border: 2px solid #7a1b1b;
+    border-radius: 8px;
+    padding: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(5px);
-    color: #ffffff;
 }
 
-.sc-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+.faroeste-filme-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
 }
 
-.sc-card-title {
-    font-size: 1.2rem;
-    color: #00ffff;
-    text-shadow: 0 0 5px #00ffff66;
+.faroeste-filme-poster {
+    width: 100%;
+    border: 2px solid #d3b482;
+    border-radius: 6px;
 }
 
-.sc-card-text {
-    color: #ccc;
+.faroeste-filme-titulo {
+    font-size: 1rem;
+    margin-top: 8px;
+    color: #f8e5c2;
+    text-align: center;
+    text-shadow: 1px 1px 2px #000;
 }
 
-/* ---------- PAGINAÇÃO ---------- */
-.pagination .page-link.sc-page-link {
-    background-color: #1b263b;
-    border: 1px solid #00ffff99;
-    color: #00ffff;
-    transition: background-color 0.3s ease;
+/* ====== ALERTA (SEM RESULTADOS) ====== */
+.faroeste-alerta {
+    background: #7a1b1b;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    color: #f8e5c2;
+    border: 2px solid #511212;
 }
 
-.pagination .page-link.sc-page-link:hover {
-    background-color: #007bff;
-    color: #000;
+/* ====== PAGINAÇÃO ====== */
+.faroeste-paginacao {
+    margin-top: 40px;
+    text-align: center;
 }
 
-/* ---------- SCROLLBAR PERSONALIZADA ---------- */
-::-webkit-scrollbar {
-    width: 8px;
+.faroeste-paginacao-lista {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    gap: 8px;
 }
 
-::-webkit-scrollbar-track {
-    background: #0d1b2a;
+.faroeste-paginacao-item {
+    display: inline;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #00ffff;
-    border-radius: 4px;
+.faroeste-paginacao-link {
+    display: block;
+    padding: 8px 14px;
+    background: #3b2a23;
+    border: 2px solid #7a1b1b;
+    border-radius: 6px;
+    color: #f8e5c2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
 }
 
-/* ---------- RESPONSIVIDADE EXTRA ---------- */
-@media (max-width: 576px) {
-    .sc-title {
-        font-size: 1.8rem;
+.faroeste-paginacao-link:hover {
+    background: #7a1b1b;
+    color: #fff;
+}
+
+.faroeste-paginacao-item.ativo .faroeste-paginacao-link {
+    background: #b53030;
+    border-color: #511212;
+}
+
+.faroeste-paginacao-item.desativado .faroeste-paginacao-link {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* ====== RESPONSIVO ====== */
+@media (max-width: 768px) {
+    .faroeste-titulo {
+        font-size: 2rem;
+    }
+    .faroeste-form-row {
+        flex-direction: column;
+        align-items: stretch;
     }
 }
 
-
-/* Fimm do ficção cientifica */
+/*fINAL DO FAREOSTE*/
