@@ -429,10 +429,11 @@ body.crime-page .pagination .page-item.disabled .page-link {
 /* ====== ESTILOS APENAS PARA A PÁGINA DE CRIME FINAL ====== */
 
 /*  FAROESTE APENAS MEUS ATIRADORES  */
-body {
+body.page-faroeste {
     margin: 0;
     padding: 0;
-    background: #2b1e18 url('https://i.ibb.co/nDCyWRd/texture-old-paper.jpg') repeat;
+    background: #2b1e18 url('../images/RedDeadRed.png');
+    background-size: cover;
     color: #f8e5c2;
     font-family: 'Georgia', serif;
 }
