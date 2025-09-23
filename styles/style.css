@@ -318,3 +318,104 @@ h1 {
 /* PÁGINA DE GUERRA - FIM */
 
 /* ====== ESTILOS APENAS PARA A PÁGINA DE DOCUMENTÁRIO FINAL ====== */ 
+
+/* ============================================= */
+/* --- ESTILOS EXCLUSIVOS PARA FILMES DE CRIME --*/
+/* ============================================= */
+
+/* Corpo da página Crime */
+body.crime-page {
+    background-color: #121212; /* fundo escuro */
+    color: #e5e5e5;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('../images/crime-bg.jpg'); /* coloque aqui sua imagem temática de crime */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Título principal */
+body.crime-page h1 {
+    font-weight: 700;
+    color: #e50914; /* vermelho intenso */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #1f77d0; /* azul policial */
+    display: inline-block;
+    padding-bottom: 5px;
+    text-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
+}
+
+/* Cards de filmes */
+body.crime-page .movie-card {
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid #333;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+body.crime-page .movie-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3),
+                0 0 15px rgba(31, 119, 208, 0.2);
+}
+
+/* Posters */
+body.crime-page .small-poster {
+    border-radius: 8px;
+    border: 2px solid #222;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.crime-page .small-poster:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.5),
+                0 0 25px rgba(31, 119, 208, 0.3);
+}
+
+/* Títulos dos filmes */
+body.crime-page .movie-title,
+body.crime-page .movie-title-list {
+    color: #fff;
+    font-weight: 600;
+    margin-top: 8px;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+}
+
+/* Links */
+body.crime-page a {
+    color: #e50914;
+    transition: color 0.2s;
+}
+
+body.crime-page a:hover {
+    color: #1f77d0;
+    text-shadow: 0 0 6px #1f77d0;
+}
+
+/* Paginação */
+body.crime-page .pagination .page-link {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: #e50914;
+    transition: all 0.2s ease;
+}
+
+body.crime-page .pagination .page-link:hover {
+    background-color: #1f77d0;
+    color: #fff;
+}
+
+body.crime-page .pagination .page-item.active .page-link {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+    font-weight: bold;
+}
+
+body.crime-page .pagination .page-item.disabled .page-link {
+    background-color: #111;
+    border-color: #333;
+    color: #555;
+}
+/* ====== ESTILOS APENAS PARA A PÁGINA DE CRIME FINAL ====== */
