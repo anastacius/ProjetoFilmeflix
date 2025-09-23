@@ -344,6 +344,7 @@ body.crime-page {
     background-attachment: fixed;
 }
 
+
 /* Título principal */
 body.crime-page h1 {
     font-weight: 700;
@@ -354,6 +355,12 @@ body.crime-page h1 {
     display: inline-block;
     padding-bottom: 5px;
     text-shadow: 0 0 10px rgba(255, 238, 0, 0.7);
+     animation: crimeGlow 2s infinite alternate;
+}
+
+@keyframes crimeGlow {
+ from { text-shadow: 0 0 5px #fffb00, 0 0 10px #fffb00; }
+ to   { text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000; }
 }
 
 /* Cards de filmes */
@@ -375,12 +382,15 @@ body.crime-page .small-poster {
     border-radius: 8px;
     border: 2px solid #222;
     transition: transform 0.3s, box-shadow 0.3s;
+    filter: brightness(0.8);
 }
 
 body.crime-page .small-poster:hover {
     transform: scale(1.08);
     box-shadow: 0 0 15px rgba(229, 214, 9, 0.5),
                 0 0 25px rgba(31, 119, 208, 0.3);
+                filter: brightness(1);
+
 }
 
 /* Títulos dos filmes */
@@ -428,6 +438,24 @@ body.crime-page .pagination .page-item.disabled .page-link {
     border-color: #333;
     color: #555;
 }
+
+body.crime-page .btn-dark {
+ background: #1f1f1f;
+ border: 1px solid #fffb00;
+ color: #fffb00;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ padding: 6px 12px;
+ border-radius: 6px;
+ transition: all 0.3s;
+}
+
+body.crime-page .btn-dark:hover {
+ background: #fffb00;
+ color: #000;
+ box-shadow: 0 0 10px #fffb00;
+}
+
 /* ====== ESTILOS APENAS PARA A PÁGINA DE CRIME FINAL ====== */
 
 /*  FAROESTE APENAS MEUS ATIRADORES  */
