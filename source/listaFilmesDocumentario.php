@@ -97,26 +97,34 @@ if (!empty($termo_busca) && !empty($filmes)) {
         </div>
     </form>
     
-    <div class="row">
-        <?php if (!empty($filmes)): ?>
-            <?php foreach ($filmes as $filme): ?>
-                <?php if (!empty($filme->poster_path)): ?>
-                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                        <div class="movie-item-documentario text-center"> 
-                            <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
-                                <img src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
-                            </a>
-                            <h5 class="mt-2 movie-title-documentario"><?php echo htmlspecialchars($filme->title); ?></h5>
-                        </div>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="alert alert-warning" role="alert">
-                Nenhum documentário encontrado com este critério.
+ <div class="row">
+    <?php if (!empty($filmes)): ?>
+        <?php foreach ($filmes as $filme): ?>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                <div class="movie-item-documentario text-center">
+                    <?php
+                        $base_image_url = 'https://image.tmdb.org/t/p/w500';
+
+                        // Caminho para a sua imagem padrão local
+                        $placeholder_path = '../images/bolso.png'; 
+
+                        $poster_url = !empty($filme->poster_path)
+                            ? $base_image_url . $filme->poster_path
+                            : $placeholder_path;
+                    ?>
+                    <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
+                        <img src="<?php echo htmlspecialchars($poster_url); ?>" class="img-fluid rounded small-poster" alt="Pôster de <?php echo htmlspecialchars($filme->title); ?>">
+                    </a>
+                    <h5 class="mt-2 movie-title-documentario"><?php echo htmlspecialchars($filme->title); ?></h5>
+                </div>
             </div>
-        <?php endif; ?>
-    </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="col-12">
+            <p class="text-center text-muted">Nenhum filme encontrado.</p>
+        </div>
+    <?php endif; ?>
+</div>
 
     <?php if ($total_paginas > 1): ?>
     <nav aria-label="Paginação de Filmes">
