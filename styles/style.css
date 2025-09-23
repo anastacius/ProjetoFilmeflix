@@ -359,7 +359,7 @@ body.crime-page h1 {
 }
 
 @keyframes crimeGlow {
- from { text-shadow: 0 0 5px #fffb00, 0 0 10px #fffb00; }
+ from { text-shadow: 0 0 5px #0066ff, 0 0 10px #0066ff; }
  to   { text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000; }
 }
 
@@ -462,7 +462,7 @@ body.crime-page .btn-dark:hover {
 body.page-faroeste {
     margin: 0;
     padding: 0;
-    background: #2b1e18 url('../images/RedDeadRed.png');
+    background: #2b1e18 url('../images/RedDeadRed.png')
     background-size: cover;
     color: #f8e5c2;
     font-family: 'Georgia', serif;
