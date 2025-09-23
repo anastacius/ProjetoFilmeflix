@@ -21,7 +21,22 @@ $genero_id = 28; // ação
 $idioma = 'pt-BR';
 $ordenacao = 'title.asc';
 
+$ordenacao_selecionada = $_GET['ordenacao'] ?? 'alfabetica';
+switch ($ordenacao_selecionada) {
+    case 'popularidade':
+        $ordenacao = 'popularity.desc';
+        break;
+    case 'melhores_notas':
+        $ordenacao = 'vote_average.desc';
+        break;
+    case 'alfabetica':
+    default:
+        $ordenacao = 'title.asc';
+        break;
+}
+
 $termo_busca = $_GET['busca'] ?? '';
+
 $titulo_pagina = 'Filmes de Ação';
 $parametros_paginacao = "&quantidade={$quantidade}";
 
@@ -36,7 +51,7 @@ $paginas_necessarias = ceil($quantidade / $filmes_por_pagina_api);
 
 for ($p = 0; $p < $paginas_necessarias; $p++) {
     $pagina_api = $pagina_atual + $p;
-    $url = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_api}&language={$idioma}&sort_by={$ordenacao}&quantidade={$quantidade}";
+    $url = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_api}&language={$idioma}&sort_by={$ordenacao}";
     $json_string = @file_get_contents($url);
 
     if ($json_string === false) {
@@ -95,6 +110,25 @@ if (!empty($termo_busca) && !empty($filmes)) {
             </div>
         </div>
     </form>
+<form method="GET" class="mb-4">
+    <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
+    <input type="hidden" name="quantidade" value="<?php echo $quantidade; ?>">
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <label for="ordenacao" class="form-label mb-0">Ordenar por:</label>
+        </div>
+        <div class="col-auto">
+            <select name="ordenacao" id="ordenacao" class="form-select" onchange="this.form.submit()">
+                <option value="alfabetica" <?php echo ($ordenacao_selecionada == 'alfabetica') ? 'selected' : ''; ?>>Ordem Alfabética</option>
+                <option value="popularidade" <?php echo ($ordenacao_selecionada == 'popularidade') ? 'selected' : ''; ?>>Popularidade</option>
+                <option value="melhores_notas" <?php echo ($ordenacao_selecionada == 'melhores_notas') ? 'selected' : ''; ?>>Melhores Notas</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+
 
     <div class="row">
         <?php foreach ($filmes as $filme): ?>
