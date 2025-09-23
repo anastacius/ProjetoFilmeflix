@@ -427,3 +427,187 @@ body.crime-page .pagination .page-item.disabled .page-link {
     color: #555;
 }
 /* ====== ESTILOS APENAS PARA A PÁGINA DE CRIME FINAL ====== */
+
+/*  FAROESTE APENAS MEUS ATIRADORES  */
+body {
+    margin: 0;
+    padding: 0;
+    background: #2b1e18 url('https://i.ibb.co/nDCyWRd/texture-old-paper.jpg') repeat;
+    color: #f8e5c2;
+    font-family: 'Georgia', serif;
+}
+
+/* ====== CONTAINER GERAL ====== */
+.faroeste-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(32, 19, 14, 0.85);
+    border: 4px solid #7a1b1b;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+}
+
+/* ====== TÍTULO ====== */
+.faroeste-titulo {
+    font-family: 'Rock Salt', cursive, 'Georgia', serif;
+    text-align: center;
+    font-size: 3rem;
+    color: #d24d3e;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 35px;
+    text-shadow: 2px 2px 0 #000, 4px 4px 6px rgba(0,0,0,0.6);
+    border-bottom: 3px solid #7a1b1b;
+    padding-bottom: 10px;
+}
+
+/* ====== FORMULÁRIO ====== */
+.faroeste-form {
+    margin-bottom: 40px;
+    background: rgba(20, 12, 9, 0.8);
+    padding: 20px;
+    border: 2px solid #7a1b1b;
+    border-radius: 8px;
+}
+
+.faroeste-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.faroeste-input-text,
+.faroeste-select {
+    flex: 1;
+    min-width: 220px;
+    background: #3b2a23;
+    border: 2px solid #7a1b1b;
+    padding: 10px 12px;
+    color: #f8e5c2;
+    font-size: 1rem;
+    border-radius: 6px;
+}
+
+.faroeste-input-text::placeholder {
+    color: #d1bba0;
+}
+
+.faroeste-btn {
+    background: #7a1b1b;
+    border: 2px solid #511212;
+    color: #f8e5c2;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.faroeste-btn:hover {
+    background: #b53030;
+}
+
+/* ====== GRID DE FILMES ====== */
+.faroeste-filmes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.faroeste-filme-card {
+    background: rgba(0,0,0,0.55);
+    border: 2px solid #7a1b1b;
+    border-radius: 8px;
+    padding: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faroeste-filme-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
+
+.faroeste-filme-poster {
+    width: 100%;
+    border: 2px solid #d3b482;
+    border-radius: 6px;
+}
+
+.faroeste-filme-titulo {
+    font-size: 1rem;
+    margin-top: 8px;
+    color: #f8e5c2;
+    text-align: center;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* ====== ALERTA (SEM RESULTADOS) ====== */
+.faroeste-alerta {
+    background: #7a1b1b;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    color: #f8e5c2;
+    border: 2px solid #511212;
+}
+
+/* ====== PAGINAÇÃO ====== */
+.faroeste-paginacao {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.faroeste-paginacao-lista {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    gap: 8px;
+}
+
+.faroeste-paginacao-item {
+    display: inline;
+}
+
+.faroeste-paginacao-link {
+    display: block;
+    padding: 8px 14px;
+    background: #3b2a23;
+    border: 2px solid #7a1b1b;
+    border-radius: 6px;
+    color: #f8e5c2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.faroeste-paginacao-link:hover {
+    background: #7a1b1b;
+    color: #fff;
+}
+
+.faroeste-paginacao-item.ativo .faroeste-paginacao-link {
+    background: #b53030;
+    border-color: #511212;
+}
+
+.faroeste-paginacao-item.desativado .faroeste-paginacao-link {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* ====== RESPONSIVO ====== */
+@media (max-width: 768px) {
+    .faroeste-titulo {
+        font-size: 2rem;
+    }
+    .faroeste-form-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/*fINAL DO FAREOSTE*/
