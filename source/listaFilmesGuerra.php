@@ -1,17 +1,5 @@
 <!-- Guilherme -->
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes de Guerra</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="./styles/style.css">
-</head>
-<body>
-
-<?php
+ <?php
 $pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $quantidade = isset($_GET['quantidade']) ? (int)$_GET['quantidade'] : 20;
 $quantidade = in_array($quantidade, [20, 30, 50]) ? $quantidade : 20;
@@ -62,7 +50,12 @@ $filmes = $filmes_coletados;
 if (!empty($termo_busca) && !empty($filmes)) {
     $filmes_filtrados = [];
     foreach ($filmes as $filme) {
-        if (isset($filme->genre_ids) && in_array($genero_id, $filme->genre_ids)) {
+        if (
+            isset($filme->title) &&
+            stripos($filme->title, $termo_busca) !== false &&
+            isset($filme->genre_ids) &&
+            in_array($genero_id, $filme->genre_ids)
+        ) {
             $filmes_filtrados[] = $filme;
         }
     }
@@ -70,8 +63,21 @@ if (!empty($termo_busca) && !empty($filmes)) {
 }
 ?>
 
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Filmes de Guerra</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes de Guerra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+
+<h1 class="text-center mb-4">Filmes de Guerra</h1>
+
+<div class="container mt-5" style="background-color: #33333369;">
+    
 
     <form action="" method="GET" class="mb-4">
         <div class="input-group">
