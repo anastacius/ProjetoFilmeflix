@@ -17,7 +17,7 @@ $quantidade = isset($_GET['quantidade']) ? (int)$_GET['quantidade'] : 20;
 $quantidade = in_array($quantidade, [20, 30, 50]) ? $quantidade : 20;
 
 $api_key = '304354587f5fcd1ae0898cf39f4dc337';
-$genero_id = 28; // História
+$genero_id = 36; // História
 $idioma = 'pt-BR';
 $ordenacao = 'title.asc';
 
