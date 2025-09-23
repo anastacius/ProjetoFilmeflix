@@ -613,4 +613,131 @@ body.page-faroeste {
     }
 }
 
+<<<<<<< Updated upstream
 /*fINAL DO FAREOSTE*/
+=======
+/* ======== TÍTULOS ======== */
+h1, h4 {
+    text-shadow: 0 0 10px #00eaff, 0 0 20px #0077ff;
+}
+/* FIM DO CSS DE FICÇÃO CIENTIFICA */
+
+
+/* INÍCIO CSS FANTASIA */
+
+/* O seletor .page-fantasia garante que estes estilos SÓ se apliquem à página de fantasia */
+.page-fantasia {
+    background-color: #121a2f; /* Azul escuro com tom místico */
+    
+    /* ATUALIZE AQUI com a imagem de fundo de fantasia */
+    background-image: url('../images/FundoFantasia.jpg'); 
+    
+    background-size: cover;
+    background-attachment: fixed;
+    color: #e0e0f0; /* Cor do texto levemente azulada */
+    font-family: 'Montserrat', sans-serif; /* Fonte moderna para o corpo */
+}
+
+/* Título principal da página */
+.page-fantasia h1 {
+    font-family: 'Cinzel', serif; /* Fonte de fantasia ou medieval */
+    font-weight: 700;
+    color: #a17ee8; /* Roxo claro mágico */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #a17ee8;
+    display: inline-block;
+}
+
+/* Estilização do formulário de busca e ordenação */
+.page-fantasia .form-control,
+.page-fantasia .form-select {
+    background-color: #1c223a;
+    color: #e0e0f0;
+    border: 1px solid #394165;
+}
+
+.page-fantasia .form-control::placeholder {
+    color: #aaaecb;
+}
+
+.page-fantasia .form-control:focus,
+.page-fantasia .form-select:focus {
+    background-color: #232b45;
+    color: #fff;
+    border-color: #a17ee8;
+    box-shadow: 0 0 0 0.25rem rgba(161, 126, 232, 0.25);
+}
+
+/* Botão principal */
+.page-fantasia .btn-primary {
+    background-color: #a17ee8;
+    border-color: #a17ee8;
+    color: #121a2f;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.page-fantasia .btn-primary:hover {
+    background-color: #8d6dd1;
+    border-color: #8d6dd1;
+    transform: scale(1.05);
+}
+
+/* Card do Filme - agora com classe única */
+.movie-item-fantasia {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #2c3458;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    height: 100%;
+}
+
+.movie-item-fantasia:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(161, 126, 232, 0.15);
+    border-color: #a17ee8;
+}
+
+.movie-item-fantasia img {
+    border-radius: 5px;
+}
+
+/* Título do filme - classe única e fonte diferente */
+.movie-title-fantasia {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    color: #f8f8ff;
+    margin-top: 10px;
+    min-height: 40px;
+}
+
+/* Estilização da Paginação */
+.page-fantasia .pagination .page-link {
+    background-color: #1c223a;
+    border: 1px solid #394165;
+    color: #a17ee8;
+}
+
+.page-fantasia .pagination .page-link:hover {
+    background-color: #2b3455;
+}
+
+.page-fantasia .pagination .page-item.active .page-link {
+    background-color: #a17ee8;
+    border-color: #a17ee8;
+    color: #121a2f;
+    font-weight: bold;
+}
+
+.page-fantasia .pagination .page-item.disabled .page-link {
+    background-color: #181e33;
+    color: #555e80;
+    border-color: #2c3458;
+}
+
+/* ====== ESTILOS CSS FANTASIA FINAL ====== */
+>>>>>>> Stashed changes
