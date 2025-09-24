@@ -459,9 +459,8 @@ body.page-faroeste {
     background: #2b1e18 url('../images/RedDeadRed.png');
     background-size: cover;
     color: #f8e5c2;
-    font-family: 'Georgia', serif;
-}
- 
+    font-family: 'Relapse Into Madness', sans-serif;}
+
 /* ====== CONTAINER GERAL ====== */
 .faroeste-container {
     max-width: 1200px;
@@ -472,10 +471,10 @@ body.page-faroeste {
     border-radius: 12px;
     box-shadow: 0 0 25px rgba(0,0,0,0.8);
 }
- 
+
 /* ====== TÍTULO ====== */
 .faroeste-titulo {
-    font-family: 'Rock Salt', cursive, 'Georgia', serif;
+font-family: 'Relapse Into Madness', sans-serif;
     text-align: center;
     font-size: 3rem;
     color: #d24d3e;
@@ -486,7 +485,7 @@ body.page-faroeste {
     border-bottom: 3px solid #7a1b1b;
     padding-bottom: 10px;
 }
- 
+
 /* ====== FORMULÁRIO ====== */
 .faroeste-form {
     margin-bottom: 40px;
@@ -495,14 +494,14 @@ body.page-faroeste {
     border: 2px solid #7a1b1b;
     border-radius: 8px;
 }
- 
+
 .faroeste-form-row {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
 }
- 
+
 .faroeste-input-text,
 .faroeste-select {
     flex: 1;
@@ -514,11 +513,11 @@ body.page-faroeste {
     font-size: 1rem;
     border-radius: 6px;
 }
- 
+
 .faroeste-input-text::placeholder {
     color: #d1bba0;
 }
- 
+
 .faroeste-btn {
     background: #7a1b1b;
     border: 2px solid #511212;
@@ -530,18 +529,18 @@ body.page-faroeste {
     cursor: pointer;
     transition: 0.3s;
 }
- 
+
 .faroeste-btn:hover {
     background: #b53030;
 }
- 
+
 /* ====== GRID DE FILMES ====== */
 .faroeste-filmes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 20px;
 }
- 
+
 .faroeste-filme-card {
     background: rgba(0,0,0,0.55);
     border: 2px solid #7a1b1b;
@@ -549,18 +548,18 @@ body.page-faroeste {
     padding: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
- 
+
 .faroeste-filme-card:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0,0,0,0.7);
 }
- 
+
 .faroeste-filme-poster {
     width: 100%;
     border: 2px solid #d3b482;
     border-radius: 6px;
 }
- 
+
 .faroeste-filme-titulo {
     font-size: 1rem;
     margin-top: 8px;
@@ -568,7 +567,7 @@ body.page-faroeste {
     text-align: center;
     text-shadow: 1px 1px 2px #000;
 }
- 
+
 /* ====== ALERTA (SEM RESULTADOS) ====== */
 .faroeste-alerta {
     background: #7a1b1b;
@@ -579,24 +578,24 @@ body.page-faroeste {
     color: #f8e5c2;
     border: 2px solid #511212;
 }
- 
+
 /* ====== PAGINAÇÃO ====== */
 .faroeste-paginacao {
     margin-top: 40px;
     text-align: center;
 }
- 
+
 .faroeste-paginacao-lista {
     list-style: none;
     padding: 0;
     display: inline-flex;
     gap: 8px;
 }
- 
+
 .faroeste-paginacao-item {
     display: inline;
 }
- 
+
 .faroeste-paginacao-link {
     display: block;
     padding: 8px 14px;
@@ -608,22 +607,22 @@ body.page-faroeste {
     font-weight: bold;
     transition: 0.2s;
 }
- 
+
 .faroeste-paginacao-link:hover {
     background: #7a1b1b;
     color: #fff;
 }
- 
+
 .faroeste-paginacao-item.ativo .faroeste-paginacao-link {
     background: #b53030;
     border-color: #511212;
 }
- 
+
 .faroeste-paginacao-item.desativado .faroeste-paginacao-link {
     opacity: 0.4;
     pointer-events: none;
 }
- 
+
 /* ====== RESPONSIVO ====== */
 @media (max-width: 768px) {
     .faroeste-titulo {
@@ -634,8 +633,8 @@ body.page-faroeste {
         align-items: stretch;
     }
 }
- 
- 
+
+
 /*fINAL DO FAREOSTE*/
  
 /* ======== TÍTULOS ======== */
