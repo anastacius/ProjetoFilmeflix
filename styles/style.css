@@ -259,6 +259,7 @@ body.terror-page .page-title {
 /* ============================================= */
 
 /* Corpo da página Crime */
+
 body.crime-page {
     background-color: #121212; /* fundo escuro */
     background-image: url('../images/157.jpg'); 
@@ -269,6 +270,14 @@ body.crime-page {
     background-attachment: fixed;
 }
 
+.container-crime {
+    background: rgba(34, 40, 49, 0.92);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.37);
+    padding: 32px 24px;
+    max-width: 1250px;
+    margin: 40px auto;
+}
 
 /* Título principal */
 body.crime-page h1 {
