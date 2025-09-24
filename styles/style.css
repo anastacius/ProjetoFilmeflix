@@ -62,7 +62,7 @@ a {
  
 /* ====== ESTILOS APENAS PARA A PÁGINA DE TERROR ====== */
 body.terror-page {
-    background-color: #0d0d0d;
+    background-color: #0d0d0d; 
     color: #f1f1f1;
     font-family: "Cinzel", serif;
     background-image: url(../images/fundoterror.png);
@@ -70,27 +70,27 @@ body.terror-page {
     background-position: center;
     background-repeat: no-repeat;
 }
- 
+
 /* Cards de terror */
 body.terror-page .movie-card {
     background-color: #1a1a1a;
     border: 1px solid #800000;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
 }
- 
+
 /* Posters */
 body.terror-page .small-poster {
     border: 2px solid #660000;
     filter: brightness(0.8) contrast(1.1);
     transition: transform 0.3s, filter 0.3s, box-shadow 0.3s;
 }
- 
+
 body.terror-page .small-poster:hover {
     transform: scale(1.1) rotate(-1deg);
     filter: brightness(1) contrast(1.2);
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
- 
+
 /* Títulos */
 body.terror-page .movie-title,
 body.terror-page .movie-title-list {
@@ -98,33 +98,32 @@ body.terror-page .movie-title-list {
     text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.6);
     font-weight: 700;
 }
- 
+
 /* Links */
 body.terror-page a {
     color: #ff4444;
     transition: color 0.2s, text-shadow 0.2s;
 }
- 
+
 body.terror-page a:hover {
     color: #ff0000;
     text-shadow: 0 0 8px #ff0000;
 }
- 
+
 /* Paginação */
 body.terror-page .pagination .page-link {
     background-color: #1a1a1a;
     border: 1px solid #660000;
     color: #f1f1f1;
 }
- 
+
 body.terror-page .pagination .page-item.active .page-link {
     background-color: #ff0000;
     border-color: #ff0000;
     color: #fff;
 }
- 
+
 /* ====== AJUSTES ESPECÍFICOS ====== */
-/* Remove o fundo cinza e borda do container herdado */
 body.terror-page .container {
     background: none !important;
     box-shadow: none !important;
@@ -132,17 +131,17 @@ body.terror-page .container {
     padding: 0 !important;
     margin: 0 auto !important;
 }
- 
+
 /* Título da página de Terror */
-body.terror-page h1,
+body.terror-page h1, 
 body.terror-page .page-title {
     color: #ff3333 !important;
     text-shadow: 2px 2px 4px rgba(255,0,0,0.6) !important;
     font-family: "Cinzel", serif !important;
     font-weight: 700;
 }
- 
-/* ====== EFEITO DE SANGUE PINGANDO NO TÍTULO ====== */
+
+/* ====== EFEITO DE TÍTULO PINGANDO SANGUE ====== */
 body.terror-page .blood-drip-title {
     position: relative;
     display: inline-block;
@@ -151,41 +150,64 @@ body.terror-page .blood-drip-title {
     font-family: "Cinzel", serif;
     font-weight: 700;
     font-size: 3rem;
+    line-height: 1.1;
+    overflow: visible;
+    padding-bottom: 10px; /* espaço pra gotas */
 }
- 
-/* Gota de sangue animada */
-body.terror-page .blood-drip-title::after {
-    content: '';
+
+/* Gotas de sangue */
+.blood-drip-title .drip {
     position: absolute;
-    left: 50%;
-    bottom: -10px;
-    width: 6px;
-    height: 6px;
+    top: 100%; /* começa na base do texto */
+    width: 8px;
+    height: 8px;
     background: #ff0000;
     border-radius: 50%;
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
-    animation: drip 2s infinite;
-    transform: translateX(-50%);
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+    animation: drip 2.8s infinite ease-in;
+    transform-origin: top center;
+    z-index: 1;
 }
- 
+
+/* Posições e delays diferentes pra realismo */
+.blood-drip-title .drip1 {
+    left: 20%;
+    animation-delay: 0s;
+}
+.blood-drip-title .drip2 {
+    left: 47%;
+    animation-delay: 1.2s;
+}
+.blood-drip-title .drip3 {
+    left: 73%;
+    animation-delay: 2s;
+}
+
 @keyframes drip {
     0% {
-        height: 6px;
+        height: 8px;
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
     }
-    50% {
-        height: 15px;
-        opacity: 0.7;
-        transform: translateX(-50%) translateY(10px);
+    30% {
+        height: 25px;
+        opacity: 0.9;
+        transform: translateY(10px);
+    }
+    60% {
+        height: 12px;
+        opacity: 0.6;
+        transform: translateY(25px);
     }
     100% {
-        height: 6px;
+        height: 0;
         opacity: 0;
-        transform: translateX(-50%) translateY(25px);
+        transform: translateY(40px);
     }
 }
-/* ====== ESTILOS APENAS PARA A PÁGINA DE TERROR FINAL ====== */
+
+/* ====== ESTILOS PARA A PÁGINA DE TERROR FINAL ====== */
+
  
  
  
