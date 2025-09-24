@@ -161,6 +161,5 @@ if (!empty($termo_busca) && !empty($filmes)) {
         </ul>
     </nav>
 </div>
-
 </body>
 </html>
