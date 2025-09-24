@@ -836,22 +836,7 @@ body.thriller-page .pagination .page-item.active .page-link {
  
 /* ============================================= */
 /* --- /* ====== GUEEERRRAAAA!!!!!! FIM ====== */
-/* ============================================= */
- 
-body.guerra-page::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120px;
-  background: url('../images/guerra.jpg') repeat-x;
-  background-size: auto 100%; /* ajustar se necessário */
-  opacity: 0.18;
-  pointer-events: none;
-  z-index: 1; /* fica acima do background, mas abaixo do container (ver próximo) */
-}
- 
+/* ============================================= */ 
 
 body.guerra-page {
     background-color: #121212; /* fundo escuro */
