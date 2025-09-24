@@ -1,5 +1,3 @@
-<!-- Base atualizada -->
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmes de Ação</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="./styles/style.css">
+   <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
 
@@ -19,7 +17,6 @@ $quantidade = in_array($quantidade, [20, 30, 50]) ? $quantidade : 20;
 $api_key = '304354587f5fcd1ae0898cf39f4dc337';
 $genero_id = 28; // ação
 $idioma = 'pt-BR';
-$ordenacao = 'title.asc';
 
 $ordenacao_selecionada = $_GET['ordenacao'] ?? 'alfabetica';
 switch ($ordenacao_selecionada) {
@@ -36,15 +33,13 @@ switch ($ordenacao_selecionada) {
 }
 
 $termo_busca = $_GET['busca'] ?? '';
-
 $titulo_pagina = 'Filmes de Ação';
-$parametros_paginacao = "&quantidade={$quantidade}";
+$parametros_paginacao = "&quantidade={$quantidade}&ordenacao={$ordenacao_selecionada}";
 
 $filmes = [];
 $total_paginas = 1;
 $base_image_url = 'https://image.tmdb.org/t/p/w500';
 
-// Buscar múltiplas páginas se necessário
 $filmes_coletados = [];
 $filmes_por_pagina_api = 20;
 $paginas_necessarias = ceil($quantidade / $filmes_por_pagina_api);
@@ -54,15 +49,9 @@ for ($p = 0; $p < $paginas_necessarias; $p++) {
     $url = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_api}&language={$idioma}&sort_by={$ordenacao}";
     $json_string = @file_get_contents($url);
 
-    if ($json_string === false) {
-        die('<div class="alert alert-danger" role="alert">Erro ao se conectar com a API do TMDB.</div>');
-    }
-
+    if ($json_string === false) { die('<div class="alert alert-danger" role="alert">Erro ao se conectar com a API do TMDB.</div>'); }
     $filmes_data = json_decode($json_string);
-
-    if (!$filmes_data || !isset($filmes_data->results)) {
-        die('<div class="alert alert-warning" role="alert">Nenhum filme encontrado.</div>');
-    }
+    if (!$filmes_data || !isset($filmes_data->results)) { die('<div class="alert alert-warning" role="alert">Nenhum filme encontrado.</div>'); }
 
     $total_paginas = $filmes_data->total_pages;
     foreach ($filmes_data->results as $filme) {
@@ -73,7 +62,13 @@ for ($p = 0; $p < $paginas_necessarias; $p++) {
 
 $filmes = $filmes_coletados;
 
-// Filtragem por busca (se necessário)
+
+$votos_arquivo = 'votes.json';
+$votos = file_exists($votos_arquivo) ? json_decode(file_get_contents($votos_arquivo), true) : [];
+if (!is_array($votos)) {
+    $votos = [];
+}
+
 if (!empty($termo_busca) && !empty($filmes)) {
     $filmes_filtrados = [];
     foreach ($filmes as $filme) {
@@ -94,41 +89,36 @@ if (!empty($termo_busca) && !empty($filmes)) {
             <button class="btn btn-primary" type="submit">Buscar</button>
         </div>
     </form>
-
-    <form method="GET" class="mb-4">
-        <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
-        <div class="row align-items-center">
-            <div class="col-auto">
-                <label for="quantidade" class="form-label mb-0">Quantidade de filmes:</label>
+    <div class="d-flex justify-content-between mb-4">
+        <form method="GET" class="d-inline-block">
+            <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
+            <input type="hidden" name="ordenacao" value="<?php echo $ordenacao_selecionada; ?>">
+            <div class="row align-items-center">
+                <div class="col-auto"><label for="quantidade" class="form-label mb-0">Filmes por página:</label></div>
+                <div class="col-auto">
+                    <select name="quantidade" id="quantidade" class="form-select" onchange="this.form.submit()">
+                        <option value="20" <?php echo ($quantidade == 20) ? 'selected' : ''; ?>>20</option>
+                        <option value="30" <?php echo ($quantidade == 30) ? 'selected' : ''; ?>>30</option>
+                        <option value="50" <?php echo ($quantidade == 50) ? 'selected' : ''; ?>>50</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-auto">
-                <select name="quantidade" id="quantidade" class="form-select" onchange="this.form.submit()">
-                    <option value="20" <?php echo ($quantidade == 20) ? 'selected' : ''; ?>>20</option>
-                    <option value="30" <?php echo ($quantidade == 30) ? 'selected' : ''; ?>>30</option>
-                    <option value="50" <?php echo ($quantidade == 50) ? 'selected' : ''; ?>>50</option>
-                </select>
+        </form>
+        <form method="GET" class="d-inline-block">
+            <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
+            <input type="hidden" name="quantidade" value="<?php echo $quantidade; ?>">
+            <div class="row align-items-center">
+                <div class="col-auto"><label for="ordenacao" class="form-label mb-0">Ordenar por:</label></div>
+                <div class="col-auto">
+                    <select name="ordenacao" id="ordenacao" class="form-select" onchange="this.form.submit()">
+                        <option value="alfabetica" <?php echo ($ordenacao_selecionada == 'alfabetica') ? 'selected' : ''; ?>>Ordem Alfabética</option>
+                        <option value="popularidade" <?php echo ($ordenacao_selecionada == 'popularidade') ? 'selected' : ''; ?>>Popularidade</option>
+                        <option value="melhores_notas" <?php echo ($ordenacao_selecionada == 'melhores_notas') ? 'selected' : ''; ?>>Melhores Notas</option>
+                    </select>
+                </div>
             </div>
-        </div>
-    </form>
-<form method="GET" class="mb-4">
-    <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
-    <input type="hidden" name="quantidade" value="<?php echo $quantidade; ?>">
-    <div class="row align-items-center">
-        <div class="col-auto">
-            <label for="ordenacao" class="form-label mb-0">Ordenar por:</label>
-        </div>
-        <div class="col-auto">
-            <select name="ordenacao" id="ordenacao" class="form-select" onchange="this.form.submit()">
-                <option value="alfabetica" <?php echo ($ordenacao_selecionada == 'alfabetica') ? 'selected' : ''; ?>>Ordem Alfabética</option>
-                <option value="popularidade" <?php echo ($ordenacao_selecionada == 'popularidade') ? 'selected' : ''; ?>>Popularidade</option>
-                <option value="melhores_notas" <?php echo ($ordenacao_selecionada == 'melhores_notas') ? 'selected' : ''; ?>>Melhores Notas</option>
-            </select>
-        </div>
+        </form>
     </div>
-</form>
-
-<div class="row">
-
 
     <div class="row">
         <?php foreach ($filmes as $filme): ?>
@@ -138,6 +128,16 @@ if (!empty($termo_busca) && !empty($filmes)) {
                         <img src="<?php echo htmlspecialchars($base_image_url . $filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
                     </a>
                     <h5 class="mt-2 movie-title-list"><?php echo htmlspecialchars($filme->title); ?></h5>
+
+                    <div class="rating-stars" data-movie-id="<?php echo $filme->id; ?>">
+                        <?php
+                            $nota_atual = $votos[$filme->id] ?? 0;
+                            for ($i = 1; $i <= 5; $i++):
+                            $rated_class = ($i <= $nota_atual) ? 'rated' : '';
+                        ?>
+                <span class="star <?php echo $rated_class; ?>" data-rating="<?php echo $i; ?>"></span>
+    <?php endfor; ?>
+</div>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -145,21 +145,53 @@ if (!empty($termo_busca) && !empty($filmes)) {
 
     <nav aria-label="Paginação de Filmes">
         <ul class="pagination justify-content-center mt-4">
-            <li class="page-item <?php echo ($pagina_atual <= 1) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $pagina_atual - 1; ?>">Anterior</a>
-            </li>
-            
+            <li class="page-item <?php echo ($pagina_atual <= 1) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $pagina_atual - 1; ?><?php echo $parametros_paginacao; ?>">Anterior</a></li>
             <?php for ($i = max(1, $pagina_atual - 8); $i <= min($pagina_atual + 8, $total_paginas); $i++): ?>
-                <li class="page-item <?php echo ($i == $pagina_atual) ? 'active' : ''; ?>">
-                    <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                </li>
+                <li class="page-item <?php echo ($i == $pagina_atual) ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?><?php echo $parametros_paginacao; ?>"><?php echo $i; ?></a></li>
             <?php endfor; ?>
-            
-            <li class="page-item <?php echo ($pagina_atual >= $total_paginas) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $pagina_atual + 1; ?>">Próxima</a>
-            </li>
+            <li class="page-item <?php echo ($pagina_atual >= $total_paginas) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $pagina_atual + 1; ?><?php echo $parametros_paginacao; ?>">Próxima</a></li>
         </ul>
     </nav>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.rating-stars .star');
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = this.getAttribute('data-rating');
+            const movieContainer = this.parentElement;
+            const movieId = movieContainer.getAttribute('data-movie-id');
+            const data = { movieId: movieId, rating: rating };
+
+            fetch('salvar_voto.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    console.log(result.message);
+                    const starsInContainer = movieContainer.querySelectorAll('.star');
+                    starsInContainer.forEach(s => {
+                        s.classList.remove('rated');
+                        if (s.getAttribute('data-rating') <= rating) {
+                            s.classList.add('rated');
+                        }
+                    });
+                } else {
+                    console.error('Erro:', result.message);
+                    alert('Não foi possível salvar seu voto. Tente novamente.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro na requisição:', error);
+                alert('Ocorreu um erro de comunicação com o servidor.');
+            });
+        });
+    });
+});
+</script>
 </body>
 </html>

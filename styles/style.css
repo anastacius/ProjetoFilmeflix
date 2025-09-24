@@ -831,6 +831,53 @@ body.thriller-page .pagination .page-item.active .page-link {
 /* ========== ESTILOS DA CATEGORIA THRILLER =========== */
 /* ==================================================== */
 
+
+
+/* ====== ESTILOS SISTEMA DE VOTOS ESTRELAS ====== */
+/* O container das estrelas. O cursor continua sendo uma "mãozinha". */
+.rating-stars {
+    cursor: pointer;
+    display: inline-block;
+    /* Adicionado para alinhar as estrelas verticalmente */
+    vertical-align: middle;
+}
+
+/* Esta é a regra principal. Transformamos o <span> em um bloco
+   com tamanho definido e aplicamos a imagem de estrela SEM VOTO como fundo.
+*/
+.star {
+    display: inline-block; /* Permite que definamos altura e largura */
+    width: 15px;           /* Largura desejada */
+    height: 15px;          /* Altura desejada */
+    background-image: url('../images/starunvoted.png'); /* Imagem padrão */
+    background-size: contain; /* Garante que a imagem caiba perfeitamente no espaço */
+    background-repeat: no-repeat;
+    font-size: 0; /* Esconde qualquer texto ou espaço em branco residual */
+}
+
+/* Quando uma estrela tem a classe '.rated', trocamos a imagem de fundo
+   para a imagem da estrela VOTADA.
+*/
+.star.rated {
+    background-image: url('../images/starvoted.png');
+}
+
+/* EFEITO HOVER: Quando o mouse passa sobre a área das estrelas...
+   ...todas as estrelas recebem a imagem de estrela VOTADA.
+*/
+.rating-stars:hover .star {
+    background-image: url('../images/starvoted.png');
+}
+
+/* EFEITO HOVER (COMPLEMENTO): ...mas as estrelas seguintes à que está
+   sob o mouse voltam a ter a imagem de estrela SEM VOTO.
+*/
+.rating-stars .star:hover ~ .star {
+    background-image: url('../images/starunvoted.png');
+}
+
+/* ====== ESTILOS SISTEMA DE VOTOS ESTRELAS FINAL ====== */
+
 /* ============================================= */
 /* --- /* ====== GUEEERRRAAAA!!!!!! FIM ====== */
 /* ============================================= */ 
