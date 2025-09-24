@@ -660,7 +660,7 @@ h1, h4 {
 
 /* Card do Filme - agora com classe única */
 .movie-item-fantasia {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.15);
     border: 1px solid #2c3458;
     border-radius: 8px;
     padding: 10px;

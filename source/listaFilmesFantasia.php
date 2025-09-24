@@ -111,6 +111,22 @@ if (!empty($termo_busca) && !empty($filmes)) {
                                 <img src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
                             </a>
                             <h5 class="mt-2 movie-title-fantasia"><?php echo htmlspecialchars($filme->title); ?></h5>
+
+                            <!-- **INÍCIO CÓDIGO DAS ESTRELAS AQUI** -->
+
+                                    <div class="star-rating" data-filme-id="<?php echo $filme->id; ?>">
+                                        <span class="star" data-value="1">&#9733;</span>
+                                        <span class="star" data-value="2">&#9733;</span>
+                                        <span class="star" data-value="3">&#9733;</span>
+                                        <span class="star" data-value="4">&#9733;</span>
+                                        <span class="star" data-value="5">&#9733;</span>
+                                    </div>
+
+                                    <!-- **FIM DO CÓDIGO DAS ESTRELAS ACIMA** -->
+
+<div class="user-feedback mt-2" id="feedback-<?php echo $filme->id; ?>"></div>
+
+
                         </div>
                     </div>
                 <?php endif; ?>
@@ -142,6 +158,57 @@ if (!empty($termo_busca) && !empty($filmes)) {
     </nav>
     <?php endif; ?>
 </div>
+
+
+<!-- Seu conteúdo HTML do fim da página -->
+<!-- Iniciando JavaScript da avaliação por estrelas -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const ratingContainers = document.querySelectorAll('.page-fantasia .star-rating');
+
+  ratingContainers.forEach(container => {
+    const stars = container.querySelectorAll('.star');
+    const filmeId = container.dataset.filmeId;
+
+    stars.forEach(star => {
+      star.addEventListener('mouseenter', () => {
+        const value = parseInt(star.dataset.value);
+        stars.forEach(s => {
+          s.classList.toggle('hovered', parseInt(s.dataset.value) <= value);
+        });
+      });
+
+      star.addEventListener('mouseleave', () => {
+        stars.forEach(s => s.classList.remove('hovered'));
+      });
+
+      star.addEventListener('click', () => {
+        const value = parseInt(star.dataset.value);
+        stars.forEach(s => {
+          if (parseInt(s.dataset.value) <= value) {
+            s.classList.add('selected');
+          } else {
+            s.classList.remove('selected');
+          }
+        });
+
+        const comentario = prompt("Deixe um comentário (opcional):");
+        const feedbackContainer = document.getElementById('feedback-' + filmeId);
+        let html = `<strong>${value} estrela(s)</strong>`;
+        if (comentario && comentario.trim() !== '') {
+          html += `<br><em>"${comentario.trim()}"</em>`;
+        }
+        feedbackContainer.innerHTML = html;
+      });
+    });
+  });
+});
+</script>
+
+
+</body>
+</html>
+
 
 </body>
 </html>
