@@ -68,11 +68,11 @@ if (!empty($termo_busca) && !empty($filmes)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
-<body class="terror-page">
+<body class="<?php echo $pageClass; ?>">
 
 <div class="container mt-5">
     
-    <h1 class="text-center mb-4"><?php echo $titulo_pagina; ?></h1>
+    <h1><?php echo $titulo_pagina; ?></h1>
 
     <form action="" method="GET" class="mb-4">
         <div class="row g-2">
