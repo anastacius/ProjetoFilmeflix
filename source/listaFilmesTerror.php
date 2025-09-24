@@ -7,7 +7,6 @@ $idioma = 'pt-BR';
 
 // --- CAPTURA DE INPUTS DO USUÁRIO ---
 $termo_busca = isset($_GET['busca']) ? $_GET['busca'] : '';
-// Opção de ordenação com 'popularity.desc' como padrão
 $ordenacao_selecionada = isset($_GET['ordenacao']) ? $_GET['ordenacao'] : 'popularity.desc';
 
 // --- CLASSE PARA ESTILIZAÇÃO DA PÁGINA ---
@@ -19,13 +18,11 @@ $parametros_paginacao = '&ordenacao=' . urlencode($ordenacao_selecionada);
 $url = '';
 
 if (!empty($termo_busca)) {
-    // MODO BUSCA
     $query_busca = urlencode($termo_busca);
     $url = "https://api.themoviedb.org/3/search/movie?api_key={$api_key}&query={$query_busca}&page={$pagina_atual}&language={$idioma}";
     $titulo_pagina = 'Resultados para: "' . htmlspecialchars($termo_busca) . '"';
     $parametros_paginacao .= '&busca=' . $query_busca;
 } else {
-    // MODO DESCOBERTA
     $url_base_discover = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_atual}&language={$idioma}";
     $url = $url_base_discover . '&sort_by=' . urlencode($ordenacao_selecionada);
 
@@ -48,7 +45,7 @@ if ($filmes_data && isset($filmes_data->results)) {
     $total_paginas = $filmes_data->total_pages;
 }
 
-// Filtra resultados da busca por gênero
+// --- FILTRO POR GÊNERO NO MODO BUSCA ---
 if (!empty($termo_busca) && !empty($filmes)) {
     $filmes_filtrados = [];
     foreach ($filmes as $filme) {
@@ -66,14 +63,21 @@ if (!empty($termo_busca) && !empty($filmes)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $titulo_pagina; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css?v=2.0">
 </head>
 <body class="<?php echo $pageClass; ?>">
 
 <div class="container mt-5">
-    
-    <h1><?php echo $titulo_pagina; ?></h1>
 
+    <!-- TÍTULO COM GOTAS DE SANGUE -->
+    <h1 class="page-title blood-drip-title">
+        <?php echo $titulo_pagina; ?>
+        <span class="drip drip1"></span>
+        <span class="drip drip2"></span>
+        <span class="drip drip3"></span>
+    </h1>
+
+    <!-- FORMULÁRIO DE BUSCA -->
     <form action="" method="GET" class="mb-4">
         <div class="row g-2">
             <div class="col-md-8">
@@ -91,7 +95,8 @@ if (!empty($termo_busca) && !empty($filmes)) {
             </div>
         </div>
     </form>
-    
+
+    <!-- LISTA DE FILMES -->
     <div class="row">
         <?php if (!empty($filmes)): ?>
             <?php foreach ($filmes as $filme): ?>
@@ -113,25 +118,27 @@ if (!empty($termo_busca) && !empty($filmes)) {
         <?php endif; ?>
     </div>
 
+    <!-- PAGINAÇÃO -->
     <?php if ($total_paginas > 1): ?>
     <nav aria-label="Paginação de Filmes">
         <ul class="pagination justify-content-center mt-4">
             <li class="page-item <?php echo ($pagina_atual <= 1) ? 'disabled' : ''; ?>">
                 <a class="page-link" href="?page=<?php echo $pagina_atual - 1; ?><?php echo $parametros_paginacao; ?>">Anterior</a>
             </li>
-            
+
             <?php for ($i = max(1, $pagina_atual - 4); $i <= min($pagina_atual + 4, $total_paginas); $i++): ?>
                 <li class="page-item <?php echo ($i == $pagina_atual) ? 'active' : ''; ?>">
                     <a class="page-link" href="?page=<?php echo $i; ?><?php echo $parametros_paginacao; ?>"><?php echo $i; ?></a>
                 </li>
             <?php endfor; ?>
-            
+
             <li class="page-item <?php echo ($pagina_atual >= $total_paginas) ? 'disabled' : ''; ?>">
                 <a class="page-link" href="?page=<?php echo $pagina_atual + 1; ?><?php echo $parametros_paginacao; ?>">Próxima</a>
             </li>
         </ul>
     </nav>
     <?php endif; ?>
+
 </div>
 
 </body>

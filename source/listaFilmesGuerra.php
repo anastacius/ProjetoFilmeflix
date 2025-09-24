@@ -1,137 +1,190 @@
-<!-- Guilherme -->
- <?php
+<?php
 $pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$quantidade = isset($_GET['quantidade']) ? (int)$_GET['quantidade'] : 20;
-$quantidade = in_array($quantidade, [20, 30, 50]) ? $quantidade : 20;
-
 $api_key = '304354587f5fcd1ae0898cf39f4dc337';
-$genero_id = 10752; // guerra
+$genero_id = 10752; // Guerra
 $idioma = 'pt-BR';
 $ordenacao = 'rating.desc';
 
-$termo_busca = $_GET['busca'] ?? '';
+$termo_busca = isset($_GET['busca']) ? $_GET['busca'] : '';
+$ordenacao_selecionada = isset($_GET['ordenacao']) ? $_GET['ordenacao'] : 'popularity.desc';
+
+$pageClass = "guerra-page";
+
 $titulo_pagina = 'Filmes de Guerra';
-$parametros_paginacao = "&quantidade={$quantidade}";
+$parametros_paginacao = '&ordenacao=' . urlencode($ordenacao_selecionada);
+$url = '';
 
-$filmes = [];
-$total_paginas = 1;
-$base_image_url = 'https://image.tmdb.org/t/p/w500';
+if (!empty($termo_busca)) {
+    $query_busca = urlencode($termo_busca);
+    $url = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_atual}&language={$idioma}&sort_by={$ordenacao}";
+    $titulo_pagina = 'Resultados para: "' . htmlspecialchars($termo_busca) . '"';
+    $parametros_paginacao .= '&busca=' . $query_busca;
+} else {
+    $url_base_discover = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_atual}&language={$idioma}&sort_by={$ordenacao}";
+    $url = $url_base_discover . '&sort_by=' . urlencode($ordenacao_selecionada);
 
-// Buscar múltiplas páginas se necessário
-$filmes_coletados = [];
-$filmes_por_pagina_api = 20;
-$paginas_necessarias = ceil($quantidade / $filmes_por_pagina_api);
-
-for ($p = 0; $p < $paginas_necessarias; $p++) {
-    $pagina_api = $pagina_atual + $p;
-    $url = "https://api.themoviedb.org/3/discover/movie?api_key={$api_key}&with_genres={$genero_id}&page={$pagina_api}&language={$idioma}&sort_by={$ordenacao}";
-    $json_string = @file_get_contents($url);
-
-    if ($json_string === false) {
-        die('<div class="alert alert-danger" role="alert">Erro ao se conectar com a API do TMDB.</div>');
-    }
-
-    $filmes_data = json_decode($json_string);
-
-    if (!$filmes_data || !isset($filmes_data->results)) {
-        die('<div class="alert alert-warning" role="alert">Nenhum filme encontrado.</div>');
-    }
-
-    $total_paginas = $filmes_data->total_pages;
-    foreach ($filmes_data->results as $filme) {
-        $filmes_coletados[] = $filme;
-        if (count($filmes_coletados) >= $quantidade) break 2;
+    if ($ordenacao_selecionada === 'popularity.desc') {
+        $url .= '&vote_count.gte=1000';
     }
 }
 
-$filmes = $filmes_coletados;
+$json_string = @file_get_contents($url);
+if ($json_string === false) {
+    die('<div class="alert alert-danger" role="alert">Erro ao se conectar com a API do TMDB.</div>');
+}
 
-// Filtragem por busca (se necessário)
+$filmes_data = json_decode($json_string);
+$filmes = [];
+$total_paginas = 0;
+if ($filmes_data && isset($filmes_data->results)) {
+    $filmes = $filmes_data->results;
+    $total_paginas = $filmes_data->total_pages;
+}
+
 if (!empty($termo_busca) && !empty($filmes)) {
     $filmes_filtrados = [];
     foreach ($filmes as $filme) {
-        if (
-            isset($filme->title) &&
-            stripos($filme->title, $termo_busca) !== false &&
-            isset($filme->genre_ids) &&
-            in_array($genero_id, $filme->genre_ids)
-        ) {
+        if (isset($filme->genre_ids) && in_array($genero_id, $filme->genre_ids)) {
             $filmes_filtrados[] = $filme;
         }
     }
     $filmes = $filmes_filtrados;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes de Guerra</title>
+    <title><?php echo $titulo_pagina; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
-<body>
+<body class="<?php echo $pageClass; ?>">
 
-<h1 class="text-center mb-4">Filmes de Guerra</h1>
-
-<div class="container mt-5" style="background-color: #33333369;">
+<div class="container mt-5">
     
+    <h1 class="text-center mb-4"><?php echo $titulo_pagina; ?></h1>
 
     <form action="" method="GET" class="mb-4">
-        <div class="input-group">
-            <input type="text" name="busca" class="form-control" placeholder="Buscar em Guerra..." value="<?php echo htmlspecialchars($termo_busca); ?>">
-            <button class="btn btn-primary" type="submit">Buscar</button>
-        </div>
-    </form>
-
-    <form method="GET" class="mb-4">
-        <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
-        <div class="row align-items-center">
-            <div class="col-auto">
-                <label for="quantidade" class="form-label mb-0">Quantidade de filmes:</label>
+        <div class="row g-2">
+            <div class="col-md-8">
+                <input type="text" name="busca" class="form-control" placeholder="Buscar em filmes de crime..." value="<?php echo htmlspecialchars($termo_busca); ?>">
             </div>
-            <div class="col-auto">
-                <select name="quantidade" id="quantidade" class="form-select" onchange="this.form.submit()">
-                    <option value="20" <?php echo ($quantidade == 20) ? 'selected' : ''; ?>>20</option>
-                    <option value="30" <?php echo ($quantidade == 30) ? 'selected' : ''; ?>>30</option>
-                    <option value="50" <?php echo ($quantidade == 50) ? 'selected' : ''; ?>>50</option>
+            <div class="col-md-3">
+                <select name="ordenacao" class="form-select">
+                    <option value="popularity.desc" <?php echo ($ordenacao_selecionada == 'popularity.desc') ? 'selected' : ''; ?>>Populares</option>
+                    <option value="vote_average.desc" <?php echo ($ordenacao_selecionada == 'vote_average.desc') ? 'selected' : ''; ?>>Melhores Votos</option>
+                    <option value="original_title.asc" <?php echo ($ordenacao_selecionada == 'original_title.asc') ? 'selected' : ''; ?>>Ordem Alfabética (A-Z)</option>
                 </select>
             </div>
+            <div class="col-md-1 d-grid">
+                <button class="btn btn-dark" type="submit">Filtrar</button>
+            </div>
         </div>
     </form>
+    
 
+<!-- DIVISÃO DA LISTAGEM DOS FILMES COM A AVALIÇÃO EM ESTRELAS -->
     <div class="row">
-        <?php foreach ($filmes as $filme): ?>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div class="movie-item text-center">
-                    <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
-                        <img src="<?php echo htmlspecialchars($base_image_url . $filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
-                    </a>
-                    <h5 class="mt-2 movie-title-list"><?php echo htmlspecialchars($filme->title); ?></h5>
-                </div>
+        <?php if (!empty($filmes)): ?>
+            <?php foreach ($filmes as $filme): ?>
+                <?php if (!empty($filme->poster_path)): ?>
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                        <div class="movie-item text-center">
+                            <a href="detalhes.php?id=<?php echo htmlspecialchars($filme->id); ?>">
+                                <img src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
+                            </a>
+                            <h5 class="mt-2 movie-title-list"><?php echo htmlspecialchars($filme->title); ?></h5>
+                            <!-- Avaliação de estrelas -->
+                            <div class="star-rating" data-movie-id="<?php echo htmlspecialchars($filme->id); ?>">
+                                <?php for ($star = 1; $star <= 5; $star++): ?>
+                                    <span class="star" data-value="<?php echo $star; ?>">&#9733;</span>
+                                <?php endfor; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="alert alert-warning" role="alert">
+                Nenhum filme de crime encontrado com este critério.
             </div>
-        <?php endforeach; ?>
+        <?php endif; ?>
     </div>
+    <script>
+    // Função para obter avaliação salva
+    function getRating(movieId) {
+        const ratings = JSON.parse(localStorage.getItem('movieRatings') || '{}');
+        return ratings[movieId] || 0;
+    }
 
+    // Função para salvar avaliação
+    function setRating(movieId, rating) {
+        const ratings = JSON.parse(localStorage.getItem('movieRatings') || '{}');
+        ratings[movieId] = rating;
+        localStorage.setItem('movieRatings', JSON.stringify(ratings));
+    }
+
+    // Atualiza visual das estrelas
+    function updateStars(starContainer, rating) {
+        const stars = starContainer.querySelectorAll('.star');
+        stars.forEach((star, idx) => {
+            star.style.color = (idx < rating) ? '#FFD700' : '#ccc';
+        });
+    }
+
+    // Inicializa avaliações
+    document.querySelectorAll('.star-rating').forEach(function(container) {
+        const movieId = container.getAttribute('data-movie-id');
+        const currentRating = getRating(movieId);
+        updateStars(container, currentRating);
+
+        container.querySelectorAll('.star').forEach(function(star, idx) {
+            star.addEventListener('click', function() {
+                setRating(movieId, idx + 1);
+                updateStars(container, idx + 1);
+            });
+            star.addEventListener('mouseover', function() {
+                updateStars(container, idx + 1);
+            });
+            star.addEventListener('mouseout', function() {
+                updateStars(container, getRating(movieId));
+            });
+        });
+    });
+    </script>
+    <style>
+    .star-rating .star {
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: color 0.2s;
+        color: #ccc;
+        margin: 0 2px;
+    }
+    </style>
+<!-- DIVISÃO DA LISTAGEM DOS FILMES COM A AVALIÇÃO EM ESTRELAS -->
+
+
+    <?php if ($total_paginas > 1): ?>
     <nav aria-label="Paginação de Filmes">
         <ul class="pagination justify-content-center mt-4">
             <li class="page-item <?php echo ($pagina_atual <= 1) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $pagina_atual - 1; ?>">Anterior</a>
+                <a class="page-link" href="?page=<?php echo $pagina_atual - 1; ?><?php echo $parametros_paginacao; ?>">Anterior</a>
             </li>
             
-            <?php for ($i = max(1, $pagina_atual - 8); $i <= min($pagina_atual + 8, $total_paginas); $i++): ?>
+            <?php for ($i = max(1, $pagina_atual - 4); $i <= min($pagina_atual + 4, $total_paginas); $i++): ?>
                 <li class="page-item <?php echo ($i == $pagina_atual) ? 'active' : ''; ?>">
-                    <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    <a class="page-link" href="?page=<?php echo $i; ?><?php echo $parametros_paginacao; ?>"><?php echo $i; ?></a>
                 </li>
             <?php endfor; ?>
             
             <li class="page-item <?php echo ($pagina_atual >= $total_paginas) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="?page=<?php echo $pagina_atual + 1; ?>">Próxima</a>
+                <a class="page-link" href="?page=<?php echo $pagina_atual + 1; ?><?php echo $parametros_paginacao; ?>">Próxima</a>
             </li>
         </ul>
     </nav>
+    <?php endif; ?>
 </div>
 
 </body>
