@@ -47,7 +47,7 @@ body.terror-page {
     background-color: #0d0d0d; 
     color: #f1f1f1;
     font-family: "Cinzel", serif;
-    background-image: url('imagens/fundo-terror.jpg');
+    background-image: url(../images/fundoterror.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
