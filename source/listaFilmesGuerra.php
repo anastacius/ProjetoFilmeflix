@@ -84,6 +84,8 @@ if (!empty($termo_busca) && !empty($filmes)) {
         </div>
     </form>
     
+
+<!-- DIVISÃO DA LISTAGEM DOS FILMES COM A AVALIÇÃO EM ESTRELAS -->
     <div class="row">
         <?php if (!empty($filmes)): ?>
             <?php foreach ($filmes as $filme): ?>
@@ -94,6 +96,12 @@ if (!empty($termo_busca) && !empty($filmes)) {
                                 <img src="https://image.tmdb.org/t/p/w500<?php echo htmlspecialchars($filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
                             </a>
                             <h5 class="mt-2 movie-title-list"><?php echo htmlspecialchars($filme->title); ?></h5>
+                            <!-- Avaliação de estrelas -->
+                            <div class="star-rating" data-movie-id="<?php echo htmlspecialchars($filme->id); ?>">
+                                <?php for ($star = 1; $star <= 5; $star++): ?>
+                                    <span class="star" data-value="<?php echo $star; ?>">&#9733;</span>
+                                <?php endfor; ?>
+                            </div>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -104,6 +112,59 @@ if (!empty($termo_busca) && !empty($filmes)) {
             </div>
         <?php endif; ?>
     </div>
+    <script>
+    // Função para obter avaliação salva
+    function getRating(movieId) {
+        const ratings = JSON.parse(localStorage.getItem('movieRatings') || '{}');
+        return ratings[movieId] || 0;
+    }
+
+    // Função para salvar avaliação
+    function setRating(movieId, rating) {
+        const ratings = JSON.parse(localStorage.getItem('movieRatings') || '{}');
+        ratings[movieId] = rating;
+        localStorage.setItem('movieRatings', JSON.stringify(ratings));
+    }
+
+    // Atualiza visual das estrelas
+    function updateStars(starContainer, rating) {
+        const stars = starContainer.querySelectorAll('.star');
+        stars.forEach((star, idx) => {
+            star.style.color = (idx < rating) ? '#FFD700' : '#ccc';
+        });
+    }
+
+    // Inicializa avaliações
+    document.querySelectorAll('.star-rating').forEach(function(container) {
+        const movieId = container.getAttribute('data-movie-id');
+        const currentRating = getRating(movieId);
+        updateStars(container, currentRating);
+
+        container.querySelectorAll('.star').forEach(function(star, idx) {
+            star.addEventListener('click', function() {
+                setRating(movieId, idx + 1);
+                updateStars(container, idx + 1);
+            });
+            star.addEventListener('mouseover', function() {
+                updateStars(container, idx + 1);
+            });
+            star.addEventListener('mouseout', function() {
+                updateStars(container, getRating(movieId));
+            });
+        });
+    });
+    </script>
+    <style>
+    .star-rating .star {
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: color 0.2s;
+        color: #ccc;
+        margin: 0 2px;
+    }
+    </style>
+<!-- DIVISÃO DA LISTAGEM DOS FILMES COM A AVALIÇÃO EM ESTRELAS -->
+
 
     <?php if ($total_paginas > 1): ?>
     <nav aria-label="Paginação de Filmes">
