@@ -852,6 +852,7 @@ body.guerra-page::before {
   z-index: 1; /* fica acima do background, mas abaixo do container (ver próximo) */
 }
  
+
 body.guerra-page {
     background-color: #121212; /* fundo escuro */
     background-image: url('../images/guerra.jpg');
