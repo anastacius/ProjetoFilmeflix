@@ -762,3 +762,181 @@ body.thriller-page .pagination .page-item.active .page-link {
 /* ==================================================== */
 /* ========== ESTILOS DA CATEGORIA THRILLER =========== */
 /* ==================================================== */
+
+
+
+/* ==================================================== */
+/* ========== ESTILOS DA CATEGORIA ANIMAÇÃO =========== */
+/* ==================================================== */
+body{
+    background-image: url('../images/bannerstuidogibli.PNG');
+}
+/* Imagem de fundo temática */
+
+body.animacao-page .container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+}
+
+/* Estilização do título principal */
+
+
+body.animacao-page h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #ff6347; /* Tom laranja vibrante */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #ff6347;
+    padding-bottom: 10px;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fonte divertida */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+/* Remove o fundo cinza e borda do container herdado */
+
+body.animacao-page, .animacao-page .container {
+    margin: 0;
+    padding: 20px;
+    background: none !important; /* Remove fundo cinza do container */
+    box-shadow: none !important; /* Remove sombra do container */
+    border: none !important; /* Remove borda do container */
+}
+.filtro-animacao {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.filtro-animacao .form-control,
+.filtro-animacao .form-select {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+.filtro-animacao .form-control::placeholder {
+    color: #aaa;
+}
+.filtro-animacao .form-control:focus,
+.filtro-animacao .form-select:focus {
+    background-color: #e6f7ff;
+    color: #333;
+    border-color: #ff6347;
+    box-shadow: 0 0 0 0.25rem rgba(255, 99, 71, 0.25);
+}
+/* Corpo da página Animação */
+.limpar-filtro-animacao {
+    background-color: #ff6347;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.limpar-filtro-animacao:hover {
+    background-color: #e5533d;
+}
+body.animacao-page {
+    background-color: #b8d2e8; /* Azul claro */
+    background-image: url('../images/fundo-animacao.jpg'); /* Imagem de fundo temática */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333; /* Cor do texto */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fonte divertida */
+};
+
+/* Estilização do título principal */
+body.animacao-page h1 {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-weight: bold;
+    color: #ff6347; /* Tom laranja vibrante */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ff6347;
+    display: inline-block;
+};
+/* Estilização do formulário de busca e ordenação */
+body.animacao-page .form-control,
+body.animacao-page .form-select {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+};
+body.animacao-page .form-control::placeholder {
+    color: #aaa;
+};
+body.animacao-page .form-control:focus,
+body.animacao-page .form-select:focus {
+    background-color: #e6f7ff;
+    color: #333;
+    border-color: #ff6347;
+    box-shadow: 0 0 0 0.25rem rgba(255, 99, 71, 0.25);
+};
+
+/* Botão principal */
+body.animacao-page .btn-primary {
+    background-color: #ff6347;
+    border-color: #ff6347;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+};
+body.animacao-page .btn-primary:hover {
+    background-color: #e5533d;
+    border-color: #e5533d;
+    transform: scale(1.05);
+};
+/* Card do Filme - agora com classe única */
+.movie-item-animacao {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    height: 100%;
+};
+.movie-item-animacao:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(255, 99, 71, 0.15);
+    border-color: #ff6347;
+};
+.movie-item-animacao img {
+    border-radius: 5px;
+};
+/* Título do filme - classe única e fonte diferente */
+.movie-title-animacao {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    margin-top: 10px;
+    min-height: 40px;
+};
+/* Estilização da Paginação */
+body.animacao-page .pagination .page-link {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #ff6347;
+};
+body.animacao-page .pagination .page-link:hover {
+    background-color: #e6f7ff;
+};
+body.animacao-page .pagination .page-item.active .page-link {
+    background-color: #ff6347;
+    border-color: #ff6347;
+    color: #fff;
+    font-weight: bold;
+};
+body.animacao-page .pagination .page-item.disabled .page-link {
+    background-color: #f0f0f0;
+    color: #aaa;
+    border-color: #ccc;
+};
