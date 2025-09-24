@@ -65,26 +65,11 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
                 }
             }
             while (count($filmes) < 12) 
-                {
-                    $filmes[] = (object)[ 'id' => 0, 'title' => 'N/A', 'poster_path' => '/placeholder.png'];
-                };
-            ?>
-            </div>
-                <form method="GET" class="mb-4">
-                    <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label for="ordenacao" class="col-form-label">Ordenar por:</label>
-                        </div>
-                        <div class="col-auto">
-                            <select name="ordenacao" id="ordenacao" class="form-select" onchange="this.form.submit()">
-                                <option value="title.asc" <?php echo ($ordenacao == 'title.asc') ? 'selected' : ''; ?>>Título (A-Z)</option>
-                                <option value="popularity.desc" <?php echo ($ordenacao == 'popularity.desc') ? 'selected' : ''; ?>>Populares</option>
-                                <option value="vote_average.desc" <?php echo ($ordenacao == 'vote_average.desc') ? 'selected' : ''; ?>>Melhores Votos</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
+                {$filmes[] = (object)[ 'id' => 0, 'title' => 'N/A', 'poster_path' => '/placeholder.png'];}
+            else { echo ' | Nenhum filtro ativo.'; }
+            $_GET = array();
+
+            ?></div>
         </div>
 
         <?php foreach ($filmes as $filme): ?>
@@ -101,16 +86,7 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
         </h5>
     </div>
 </div>
-        <?php endforeach; ?>
-    </div>
-    
-            <div class="col-12">
-            <?php
-                if ($total_paginas > 1) {
-                    echo '<div class="alert alert-info" role="alert">Página ' . $pagina_atual . ' de ' . $total_paginas . '</div>';
-                }
-                ?>
-            </div>
+
 
     <nav aria-label="Paginação de Filmes">
         <ul class="pagination justify-content-center mt-4">
