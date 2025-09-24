@@ -1,50 +1,50 @@
 body {
     background-color: #f8f9fa;
 }
-
+ 
 .movie-card {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     background-color: #ffffff;
 }
-
-
+ 
+ 
 .poster-img {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     max-width: 100%;
 }
-
-
+ 
+ 
 .small-poster {
     max-height: 250px;
     width: auto;
     object-fit: contain;
     transition: transform 0.2s;
 }
-
+ 
 .small-poster:hover {
     transform: scale(1.05);
 }
-
+ 
 .movie-title {
     color: #343a40;
     font-weight: 700;
 }
-
+ 
 .movie-title-list {
     font-size: 1rem;
     color: #343a40;
     font-weight: 500;
 }
-
+ 
 a {
     text-decoration: none;
 }
-
+ 
 /* ====== ESTILOS APENAS PARA A PÁGINA DE TERROR ====== */
 body.terror-page {
-    background-color: #0d0d0d; 
+    background-color: #0d0d0d;
     color: #f1f1f1;
     font-family: "Cinzel", serif;
     background-image: url(../images/fundoterror.png);
@@ -52,27 +52,27 @@ body.terror-page {
     background-position: center;
     background-repeat: no-repeat;
 }
-
+ 
 /* Cards de terror */
 body.terror-page .movie-card {
     background-color: #1a1a1a;
     border: 1px solid #800000;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
 }
-
+ 
 /* Posters */
 body.terror-page .small-poster {
     border: 2px solid #660000;
     filter: brightness(0.8) contrast(1.1);
     transition: transform 0.3s, filter 0.3s, box-shadow 0.3s;
 }
-
+ 
 body.terror-page .small-poster:hover {
     transform: scale(1.1) rotate(-1deg);
     filter: brightness(1) contrast(1.2);
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
 }
-
+ 
 /* Títulos */
 body.terror-page .movie-title,
 body.terror-page .movie-title-list {
@@ -80,31 +80,31 @@ body.terror-page .movie-title-list {
     text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.6);
     font-weight: 700;
 }
-
+ 
 /* Links */
 body.terror-page a {
     color: #ff4444;
     transition: color 0.2s, text-shadow 0.2s;
 }
-
+ 
 body.terror-page a:hover {
     color: #ff0000;
     text-shadow: 0 0 8px #ff0000;
 }
-
+ 
 /* Paginação */
 body.terror-page .pagination .page-link {
     background-color: #1a1a1a;
     border: 1px solid #660000;
     color: #f1f1f1;
 }
-
+ 
 body.terror-page .pagination .page-item.active .page-link {
     background-color: #ff0000;
     border-color: #ff0000;
     color: #fff;
 }
-
+ 
 /* ====== AJUSTES ESPECÍFICOS ====== */
 /* Remove o fundo cinza e borda do container herdado */
 body.terror-page .container {
@@ -114,39 +114,83 @@ body.terror-page .container {
     padding: 0 !important;
     margin: 0 auto !important;
 }
-
+ 
 /* Título da página de Terror */
-body.terror-page h1, 
+body.terror-page h1,
 body.terror-page .page-title {
     color: #ff3333 !important;
     text-shadow: 2px 2px 4px rgba(255,0,0,0.6) !important;
     font-family: "Cinzel", serif !important;
     font-weight: 700;
 }
+ 
+/* ====== EFEITO DE SANGUE PINGANDO NO TÍTULO ====== */
+body.terror-page .blood-drip-title {
+    position: relative;
+    display: inline-block;
+    color: #ff3333;
+    text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.6);
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    font-size: 3rem;
+}
+ 
+/* Gota de sangue animada */
+body.terror-page .blood-drip-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 6px;
+    height: 6px;
+    background: #ff0000;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    animation: drip 2s infinite;
+    transform: translateX(-50%);
+}
+ 
+@keyframes drip {
+    0% {
+        height: 6px;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        height: 15px;
+        opacity: 0.7;
+        transform: translateX(-50%) translateY(10px);
+    }
+    100% {
+        height: 6px;
+        opacity: 0;
+        transform: translateX(-50%) translateY(25px);
+    }
+}
 /* ====== ESTILOS APENAS PARA A PÁGINA DE TERROR FINAL ====== */
-
-
-
+ 
+ 
+ 
+ 
 /* ============================================= */
 /* --- ESTILOS EXCLUSIVOS PARA DOCUMENTÁRIOS --- */
 /* ============================================= */
-
+ 
 /* Importando fontes do Google para um visual mais refinado */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;700&display=swap');
 
-/* O seletor .page-documentario garante que estes estilos SÓ se apliquem à página de documentários */
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;700&display=swap%27);
 .page-documentario {
     background-color: #1a1a1a; /* Um fundo escuro, quase preto */
-    
+   
     /* ATUALIZE AQUI com a imagem que você baixou */
-    background-image: url('../images/CINEMA\ -\ IMAGEM\ DE\ FUNDO\ DOCUMENTARIOS.jpg'); 
-    
+    background-image: url('../images/CINEMA\ -\ IMAGEM\ DE\ FUNDO\ DOCUMENTARIOS.jpg');
+   
     background-size: cover;
     background-attachment: fixed;
     color: #e0e0e0; /* Cor do texto principal levemente acinzentada */
     font-family: 'Montserrat', sans-serif; /* Fonte moderna para o corpo */
 }
-
+ 
 /* Título principal da página */
 .page-documentario h1 {
     font-family: 'Montserrat', sans-serif;
@@ -158,7 +202,7 @@ body.terror-page .page-title {
     border-bottom: 2px solid #d4af37;
     display: inline-block; /* Faz a borda ter o tamanho do texto */
 }
-
+ 
 /* Estilização do formulário de busca e ordenação */
 .page-documentario .form-control,
 .page-documentario .form-select {
@@ -166,11 +210,11 @@ body.terror-page .page-title {
     color: #e0e0e0;
     border: 1px solid #444;
 }
-
+ 
 .page-documentario .form-control::placeholder {
     color: #888;
 }
-
+ 
 .page-documentario .form-control:focus,
 .page-documentario .form-select:focus {
     background-color: #333;
@@ -178,7 +222,7 @@ body.terror-page .page-title {
     border-color: #d4af37;
     box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25); /* Sombra do foco com a cor de destaque */
 }
-
+ 
 /* Botão principal */
 .page-documentario .btn-primary {
     background-color: #d4af37;
@@ -188,13 +232,13 @@ body.terror-page .page-title {
     text-transform: uppercase;
     transition: all 0.3s ease;
 }
-
+ 
 .page-documentario .btn-primary:hover {
     background-color: #c8a02b;
     border-color: #c8a02b;
     transform: scale(1.05);
 }
-
+ 
 /* Card do Filme - agora com classe única */
 .movie-item-documentario {
     background-color: rgba(0, 0, 0, 0.2);
@@ -204,17 +248,17 @@ body.terror-page .page-title {
     transition: all 0.3s ease-in-out;
     height: 100%;
 }
-
+ 
 .movie-item-documentario:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
     border-color: #d4af37;
 }
-
+ 
 .movie-item-documentario img {
     border-radius: 5px;
 }
-
+ 
 /* Título do filme - classe única e fonte diferente */
 .movie-title-documentario {
     font-family: 'Lora', serif; /* Fonte com serifa para um toque clássico */
@@ -223,43 +267,43 @@ body.terror-page .page-title {
     margin-top: 10px;
     min-height: 40px; /* Garante alinhamento dos cards */
 }
-
+ 
 /* Estilização da Paginação */
 .page-documentario .pagination .page-link {
     background-color: #2b2b2b;
     border: 1px solid #444;
     color: #d4af37;
 }
-
+ 
 .page-documentario .pagination .page-link:hover {
     background-color: #333;
 }
-
+ 
 .page-documentario .pagination .page-item.active .page-link {
     background-color: #d4af37;
     border-color: #d4af37;
     color: #1a1a1a;
     font-weight: bold;
 }
-
+ 
 .page-documentario .pagination .page-item.disabled .page-link {
     background-color: #222;
     color: #555;
     border-color: #333;
 }
-
+ 
 /* PÁGINA DE GUERRA - INICIO */
-
+ 
 /* PÁGINA DE GUERRA - FIM */
-
-
-
+ 
+ 
+ 
 /* ============================================= */
 /* --- ESTILOS EXCLUSIVOS PARA FILMES DE CRIME --*/
 /* ============================================= */
-
+ 
 /* Corpo da página Crime */
-
+ 
 body.crime-page::before {
   content: "";
   position: fixed;
@@ -273,17 +317,17 @@ body.crime-page::before {
   pointer-events: none;
   z-index: 1; /* fica acima do background, mas abaixo do container (ver próximo) */
 }
-
+ 
 body.crime-page {
     background-color: #121212; /* fundo escuro */
-    background-image: url('../images/157.jpg'); 
+    background-image: url('../images/157.jpg');
     color: #e5e5e5;
     font-family: 'Roboto', sans-serif;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
-
+ 
 .container-crime {
     background: rgba(34, 40, 49, 0.92);
     border-radius: 16px;
@@ -294,7 +338,7 @@ body.crime-page {
     position: relative;
     z-index: 2;
 }
-
+ 
 /* Título principal */
 body.crime-page h1 {
     font-weight: 700;
@@ -307,12 +351,12 @@ body.crime-page h1 {
     text-shadow: 0 0 10px rgba(255, 238, 0, 0.7);
      animation: crimeGlow 2s infinite alternate;
 }
-
+ 
 @keyframes crimeGlow {
  from { text-shadow: 0 0 5px #0066ff, 0 0 10px #0066ff; }
  to   { text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000; }
 }
-
+ 
 /* Cards de filmes */
 body.crime-page .movie-card {
     background: rgba(20, 20, 20, 0.85);
@@ -320,13 +364,13 @@ body.crime-page .movie-card {
     border-radius: 10px;
     transition: all 0.3s ease;
 }
-
+ 
 body.crime-page .movie-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3),
                 0 0 15px rgba(31, 119, 208, 0.2);
 }
-
+ 
 /* Posters */
 body.crime-page .small-poster {
     border-radius: 8px;
@@ -334,15 +378,15 @@ body.crime-page .small-poster {
     transition: transform 0.3s, box-shadow 0.3s;
     filter: brightness(0.8);
 }
-
+ 
 body.crime-page .small-poster:hover {
     transform: scale(1.08);
     box-shadow: 0 0 15px rgba(229, 214, 9, 0.5),
                 0 0 25px rgba(31, 119, 208, 0.3);
                 filter: brightness(1);
-
+ 
 }
-
+ 
 /* Títulos dos filmes */
 body.crime-page .movie-title,
 body.crime-page .movie-title-list {
@@ -351,18 +395,18 @@ body.crime-page .movie-title-list {
     margin-top: 8px;
     text-shadow: 0 0 6px rgba(0,0,0,0.7);
 }
-
+ 
 /* Links */
 body.crime-page a {
     color: #e50914;
     transition: color 0.2s;
 }
-
+ 
 body.crime-page a:hover {
     color: #1f77d0;
     text-shadow: 0 0 6px #1f77d0;
 }
-
+ 
 /* Paginação */
 body.crime-page .pagination .page-link {
     background-color: #1a1a1a;
@@ -370,25 +414,25 @@ body.crime-page .pagination .page-link {
     color: #fffb00;
     transition: all 0.2s ease;
 }
-
+ 
 body.crime-page .pagination .page-link:hover {
     background-color: #1f77d0;
     color: #fff;
 }
-
+ 
 body.crime-page .pagination .page-item.active .page-link {
     background-color: #e5e109;
     border-color:#e5e109;
     color: #fff;
     font-weight: bold;
 }
-
+ 
 body.crime-page .pagination .page-item.disabled .page-link {
     background-color: #111;
     border-color: #333;
     color: #555;
 }
-
+ 
 body.crime-page .btn-dark {
  background: #1f1f1f;
  border: 1px solid #fffb00;
@@ -399,15 +443,15 @@ body.crime-page .btn-dark {
  border-radius: 6px;
  transition: all 0.3s;
 }
-
+ 
 body.crime-page .btn-dark:hover {
  background: #fffb00;
  color: #000;
  box-shadow: 0 0 10px #fffb00;
 }
-
+ 
 /* ====== ESTILOS APENAS PARA A PÁGINA DE CRIME FINAL ====== */
-
+ 
 /*  FAROESTE APENAS MEUS ATIRADORES  */
 body.page-faroeste {
     margin: 0;
@@ -415,8 +459,7 @@ body.page-faroeste {
     background: #2b1e18 url('../images/RedDeadRed.png');
     background-size: cover;
     color: #f8e5c2;
-    font-family: 'Georgia', serif;
-}
+    font-family: 'Relapse Into Madness', sans-serif;}
 
 /* ====== CONTAINER GERAL ====== */
 .faroeste-container {
@@ -431,7 +474,7 @@ body.page-faroeste {
 
 /* ====== TÍTULO ====== */
 .faroeste-titulo {
-    font-family: 'Rock Salt', cursive, 'Georgia', serif;
+font-family: 'Relapse Into Madness', sans-serif;
     text-align: center;
     font-size: 3rem;
     color: #d24d3e;
@@ -593,29 +636,29 @@ body.page-faroeste {
 
 
 /*fINAL DO FAREOSTE*/
-
+ 
 /* ======== TÍTULOS ======== */
 h1, h4 {
     text-shadow: 0 0 10px #00eaff, 0 0 20px #0077ff;
 }
 /* FIM DO CSS DE FICÇÃO CIENTIFICA */
-
-
+ 
+ 
 /* INÍCIO CSS FANTASIA */
-
+ 
 /* O seletor .page-fantasia garante que estes estilos SÓ se apliquem à página de fantasia */
 .page-fantasia {
     background-color: #121a2f; /* Azul escuro com tom místico */
-    
+   
     /* ATUALIZE AQUI com a imagem de fundo de fantasia */
-    background-image: url('../images/FundoFantasia.jpg'); 
-    
+    background-image: url('../images/FundoFantasia.jpg');
+   
     background-size: cover;
     background-attachment: fixed;
     color: #e0e0f0; /* Cor do texto levemente azulada */
     font-family: 'Montserrat', sans-serif; /* Fonte moderna para o corpo */
 }
-
+ 
 /* Título principal da página */
 .page-fantasia h1 {
     font-family: 'Cinzel', serif; /* Fonte de fantasia ou medieval */
@@ -627,7 +670,7 @@ h1, h4 {
     border-bottom: 2px solid #a17ee8;
     display: inline-block;
 }
-
+ 
 /* Estilização do formulário de busca e ordenação */
 .page-fantasia .form-control,
 .page-fantasia .form-select {
@@ -635,11 +678,11 @@ h1, h4 {
     color: #e0e0f0;
     border: 1px solid #394165;
 }
-
+ 
 .page-fantasia .form-control::placeholder {
     color: #aaaecb;
 }
-
+ 
 .page-fantasia .form-control:focus,
 .page-fantasia .form-select:focus {
     background-color: #232b45;
@@ -647,7 +690,7 @@ h1, h4 {
     border-color: #a17ee8;
     box-shadow: 0 0 0 0.25rem rgba(161, 126, 232, 0.25);
 }
-
+ 
 /* Botão principal */
 .page-fantasia .btn-primary {
     background-color: #a17ee8;
@@ -657,13 +700,13 @@ h1, h4 {
     text-transform: uppercase;
     transition: all 0.3s ease;
 }
-
+ 
 .page-fantasia .btn-primary:hover {
     background-color: #8d6dd1;
     border-color: #8d6dd1;
     transform: scale(1.05);
 }
-
+ 
 /* Card do Filme - agora com classe única */
 .movie-item-fantasia {
     background-color: rgba(255, 255, 255, 0.05);
@@ -673,17 +716,17 @@ h1, h4 {
     transition: all 0.3s ease-in-out;
     height: 100%;
 }
-
+ 
 .movie-item-fantasia:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(161, 126, 232, 0.15);
     border-color: #a17ee8;
 }
-
+ 
 .movie-item-fantasia img {
     border-radius: 5px;
 }
-
+ 
 /* Título do filme - classe única e fonte diferente */
 .movie-title-fantasia {
     font-family: 'Lora', serif;
@@ -692,40 +735,40 @@ h1, h4 {
     margin-top: 10px;
     min-height: 40px;
 }
-
+ 
 /* Estilização da Paginação */
 .page-fantasia .pagination .page-link {
     background-color: #1c223a;
     border: 1px solid #394165;
     color: #a17ee8;
 }
-
+ 
 .page-fantasia .pagination .page-link:hover {
     background-color: #2b3455;
 }
-
+ 
 .page-fantasia .pagination .page-item.active .page-link {
     background-color: #a17ee8;
     border-color: #a17ee8;
     color: #121a2f;
     font-weight: bold;
 }
-
+ 
 .page-fantasia .pagination .page-item.disabled .page-link {
     background-color: #181e33;
     color: #555e80;
     border-color: #2c3458;
 }
-
-
+ 
+ 
 /* ====== ESTILOS CSS FANTASIA FINAL ====== */
-
-
+ 
+ 
 /* ==================================================== */
 /* ========== ESTILOS DA CATEGORIA THRILLER =========== */
 /* ======= (não mexer, sujeito a linchamento) ========= */
 /* ==================================================== */
-
+ 
 body.thriller-page {
     background-image: url(../images/thriller.jpg);
     background-size: cover;
@@ -736,49 +779,49 @@ body.thriller-page {
     color: #f1f1f1;
     font-family: "Cinzel", serif;
 }
-
+ 
 body.thriller-page .movie-card {
     background-color: #1a1a1a;
     border: 1px solid #800000;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
 }
-
+ 
 /* Aplica o filtro de preto e branco no estado normal */
 body.thriller-page .small-poster {
     border: 2px solid #660000;
     filter: brightness(0.8) contrast(1.1) grayscale(100%);
     transition: transform 0.3s, filter 0.3s;
 }
-
+ 
 /* Remove o filtro de preto e branco ao passar o mouse */
 body.thriller-page .small-poster:hover {
     transform: scale(1.1) rotate(-1deg);
     filter: brightness(1) contrast(1.2) grayscale(0%);
 }
-
+ 
 body.thriller-page .movie-title,
 body.terror-page .movie-title-list {
     color: #ff3333;
     text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.6);
     font-weight: 700;
 }
-
+ 
 body.thriller-page a {
     color: #ff4444;
     transition: color 0.2s, text-shadow 0.2s;
 }
-
+ 
 body.thriller-page a:hover {
     color: #ff0000;
     text-shadow: 0 0 8px #ff0000;
 }
-
+ 
 body.thriller-page .pagination .page-link {
     background-color: #1a1a1a;
     border: 1px solid #660000;
     color: #f1f1f1;
 }
-
+ 
 body.thriller-page .pagination .page-item.active .page-link {
     background-color: #ff0000;
     border-color: #ff0000;
@@ -788,36 +831,20 @@ body.thriller-page .pagination .page-item.active .page-link {
 /* ========== ESTILOS DA CATEGORIA THRILLER =========== */
 /* ==================================================== */
 
-
-
 /* ============================================= */
 /* --- /* ====== GUEEERRRAAAA!!!!!! FIM ====== */
-/* ============================================= */
-
-body.guerra-page::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 120px;
-  background: url('../images/guerra.jpg') repeat-x;
-  background-size: auto 100%; /* ajustar se necessário */
-  opacity: 0.18;
-  pointer-events: none;
-  z-index: 1; /* fica acima do background, mas abaixo do container (ver próximo) */
-}
+/* ============================================= */ 
 
 body.guerra-page {
     background-color: #121212; /* fundo escuro */
-    background-image: url('../images/guerra.jpg'); 
+    background-image: url('../images/guerra.jpg');
     color: #e5e5e5;
     font-family: 'Roboto', sans-serif;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
-
+ 
 .container-guerra {
     background: rgba(34, 40, 49, 0.92);
     border-radius: 16px;
@@ -828,7 +855,7 @@ body.guerra-page {
     position: relative;
     z-index: 2;
 }
-
+ 
 /* Título principal */
 body.guerra-page h1 {
     font-weight: 700;
@@ -840,7 +867,7 @@ body.guerra-page h1 {
     padding-bottom: 5px;
     text-shadow: 0 0 10px rgba(255, 238, 0, 0.7);
 }
-
+ 
 /* Cards de filmes */
 body.guerra-page .movie-card {
     background: rgba(20, 20, 20, 0.85);
@@ -848,13 +875,13 @@ body.guerra-page .movie-card {
     border-radius: 10px;
     transition: all 0.3s ease;
 }
-
+ 
 body.guerra-page .movie-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3),
                 0 0 15px rgba(31, 119, 208, 0.2);
 }
-
+ 
 /* Posters */
 body.guerra-page .small-poster {
     border-radius: 8px;
@@ -862,14 +889,14 @@ body.guerra-page .small-poster {
     transition: transform 0.3s, box-shadow 0.3s;
     filter: brightness(0.8);
 }
-
+ 
 body.guerra-page .small-poster:hover {
     transform: scale(1.08);
     box-shadow: 0 0 15px rgba(229, 214, 9, 0.5),
                 0 0 25px rgba(31, 119, 208, 0.3);
                 filter: brightness(1);
 }
-
+ 
 /* Títulos dos filmes */
 body.guerra-page .movie-title,
 body.guerra-page .movie-title-list {
@@ -878,18 +905,18 @@ body.guerra-page .movie-title-list {
     margin-top: 8px;
     text-shadow: 0 0 6px rgba(0,0,0,0.7);
 }
-
+ 
 /* Links */
 body.guerra-page a {
     color: #e50914;
     transition: color 0.2s;
 }
-
+ 
 body.guerra-page a:hover {
     color: #1f77d0;
     text-shadow: 0 0 6px #1f77d0;
 }
-
+ 
 /* Paginação */
 body.guerra-page .pagination .page-link {
     background-color: #1a1a1a;
@@ -897,25 +924,25 @@ body.guerra-page .pagination .page-link {
     color: #fffb00;
     transition: all 0.2s ease;
 }
-
+ 
 body.guerra-page .pagination .page-link:hover {
     background-color: #1f77d0;
     color: #fff;
 }
-
+ 
 body.guerra-page .pagination .page-item.active .page-link {
     background-color: #e5e109;
     border-color:#e5e109;
     color: #fff;
     font-weight: bold;
 }
-
+ 
 body.guerra-page .pagination .page-item.disabled .page-link {
     background-color: #111;
     border-color: #333;
     color: #555;
 }
-
+ 
 body.guerra-page .btn-dark {
  background: #1f1f1f;
  border: 1px solid #fffb00;
@@ -926,11 +953,192 @@ body.guerra-page .btn-dark {
  border-radius: 6px;
  transition: all 0.3s;
 }
-
+ 
 body.guerra-page .btn-dark:hover {
  background: #fffb00;
  color: #000;
  box-shadow: 0 0 10px #fffb00;
 }
-
+ 
 /* ====== GUEEERRRAAAA!!!!!! FIM ====== */
+
+/* ==================================================== */
+/* ========== ESTILOS DA CATEGORIA ANIMAÇÃO =========== */
+/* ==================================================== */
+body{
+    background-image: url('../images/bannerstuidogibli.PNG');
+}
+/* Imagem de fundo temática */
+
+body.animacao-page .container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+}
+
+/* Estilização do título principal */
+
+
+body.animacao-page h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #ff6347; /* Tom laranja vibrante */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #ff6347;
+    padding-bottom: 10px;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fonte divertida */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+/* Remove o fundo cinza e borda do container herdado */
+
+body.animacao-page, .animacao-page .container {
+    margin: 0;
+    padding: 20px;
+    background: none !important; /* Remove fundo cinza do container */
+    box-shadow: none !important; /* Remove sombra do container */
+    border: none !important; /* Remove borda do container */
+}
+.filtro-animacao {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.filtro-animacao .form-control,
+.filtro-animacao .form-select {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+.filtro-animacao .form-control::placeholder {
+    color: #aaa;
+}
+.filtro-animacao .form-control:focus,
+.filtro-animacao .form-select:focus {
+    background-color: #e6f7ff;
+    color: #333;
+    border-color: #ff6347;
+    box-shadow: 0 0 0 0.25rem rgba(255, 99, 71, 0.25);
+}
+/* Corpo da página Animação */
+.limpar-filtro-animacao {
+    background-color: #ff6347;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.limpar-filtro-animacao:hover {
+    background-color: #e5533d;
+}
+body.animacao-page {
+    background-color: #b8d2e8; /* Azul claro */
+    background-image: url('../images/fundo-animacao.jpg'); /* Imagem de fundo temática */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333; /* Cor do texto */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fonte divertida */
+};
+
+/* Estilização do título principal */
+body.animacao-page h1 {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-weight: bold;
+    color: #ff6347; /* Tom laranja vibrante */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ff6347;
+    display: inline-block;
+};
+/* Estilização do formulário de busca e ordenação */
+body.animacao-page .form-control,
+body.animacao-page .form-select {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+};
+body.animacao-page .form-control::placeholder {
+    color: #aaa;
+};
+body.animacao-page .form-control:focus,
+body.animacao-page .form-select:focus {
+    background-color: #e6f7ff;
+    color: #333;
+    border-color: #ff6347;
+    box-shadow: 0 0 0 0.25rem rgba(255, 99, 71, 0.25);
+};
+
+/* Botão principal */
+body.animacao-page .btn-primary {
+    background-color: #ff6347;
+    border-color: #ff6347;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+};
+body.animacao-page .btn-primary:hover {
+    background-color: #e5533d;
+    border-color: #e5533d;
+    transform: scale(1.05);
+};
+/* Card do Filme - agora com classe única */
+.movie-item-animacao {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    height: 100%;
+};
+.movie-item-animacao:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(255, 99, 71, 0.15);
+    border-color: #ff6347;
+};
+.movie-item-animacao img {
+    border-radius: 5px;
+};
+/* Título do filme - classe única e fonte diferente */
+.movie-title-animacao {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    margin-top: 10px;
+    min-height: 40px;
+};
+/* Estilização da Paginação */
+body.animacao-page .pagination .page-link {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #ff6347;
+};
+body.animacao-page .pagination .page-link:hover {
+    background-color: #e6f7ff;
+};
+body.animacao-page .pagination .page-item.active .page-link {
+    background-color: #ff6347;
+    border-color: #ff6347;
+    color: #fff;
+    font-weight: bold;
+};
+body.animacao-page .pagination .page-item.disabled .page-link {
+    background-color: #f0f0f0;
+    color: #aaa;
+    border-color: #ccc;
+};
+
+
+/* ===================================================== */
+/* ========== FIM ESTILOS DA CATEGORIA ANIMAÇÃO =========== */
+/* ==================================================== */
