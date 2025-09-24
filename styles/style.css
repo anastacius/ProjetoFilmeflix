@@ -177,9 +177,8 @@ body.terror-page .blood-drip-title::after {
 /* ============================================= */
  
 /* Importando fontes do Google para um visual mais refinado */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;700&d…);
- 
-/* O seletor .page-documentario garante que estes estilos SÓ se apliquem à página de documentários */
+
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lora:wght@400;700&display=swap%27);
 .page-documentario {
     background-color: #1a1a1a; /* Um fundo escuro, quase preto */
    
