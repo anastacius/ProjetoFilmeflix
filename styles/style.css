@@ -687,6 +687,38 @@ h1, h4 {
     min-height: 40px;
 }
 
+.page-fantasia .star-rating {
+    font-size: 1.2rem;
+    color: #ccc;  /* estrelas apagadas */
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.page-fantasia .star-rating .star {
+    display: inline-block;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.page-fantasia .star-rating .star:hover,
+.page-fantasia .star-rating .star.hovered {
+    color: #ffd700;  /* amarelo hover */
+    transform: scale(1.2);
+}
+
+.page-fantasia .star-rating .star.selected {
+    color: #ffd700;  /* amarelo selecionado */
+    transform: scale(1.2);
+}
+
+.page-fantasia .user-feedback {
+    font-size: 0.85rem;
+    color: #cfc;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
 /* Estilização da Paginação */
 .page-fantasia .pagination .page-link {
     background-color: #1c223a;
