@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="../styles/style.css">
 </head>
-<body>
+<body class="acao-body">
 
 <?php
 $pagina_atual = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -80,47 +80,51 @@ if (!empty($termo_busca) && !empty($filmes)) {
 }
 ?>
 
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Filmes de Ação</h1>
+  <div class="footer-controls2">
+        <h1 class="text-center mb-4 title-acao">Filmes de Ação</h1>
 
-    <form action="" method="GET" class="mb-4">
-        <div class="input-group">
-            <input type="text" name="busca" class="form-control" placeholder="Buscar em Ação..." value="<?php echo htmlspecialchars($termo_busca); ?>">
-            <button class="btn btn-primary" type="submit">Buscar</button>
+        <form action="" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="busca" class="form-control" placeholder="Buscar em Ação..." value="<?php echo htmlspecialchars($termo_busca); ?>">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+        <div class="d-flex justify-content-between mb-4">
+            <form method="GET" class="d-inline-block">
+                <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
+                <input type="hidden" name="ordenacao" value="<?php echo $ordenacao_selecionada; ?>">
+                <div class="row align-items-center">
+                    <div class="col-auto"><label for="quantidade" class="form-label mb-0">Filmes por página:</label></div>
+                    <div class="col-auto">
+                        <select name="quantidade" id="quantidade" class="form-select" onchange="this.form.submit()">
+                            <option value="20" <?php echo ($quantidade == 20) ? 'selected' : ''; ?>>20</option>
+                            <option value="30" <?php echo ($quantidade == 30) ? 'selected' : ''; ?>>30</option>
+                            <option value="50" <?php echo ($quantidade == 50) ? 'selected' : ''; ?>>50</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <form method="GET" class="d-inline-block">
+                <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
+                <input type="hidden" name="quantidade" value="<?php echo $quantidade; ?>">
+                <div class="row align-items-center">
+                    <div class="col-auto"><label for="ordenacao" class="form-label mb-0">Ordenar por:</label></div>
+                    <div class="col-auto">
+                        <select name="ordenacao" id="ordenacao" class="form-select" onchange="this.form.submit()">
+                            <option value="alfabetica" <?php echo ($ordenacao_selecionada == 'alfabetica') ? 'selected' : ''; ?>>Ordem Alfabética</option>
+                            <option value="popularidade" <?php echo ($ordenacao_selecionada == 'popularidade') ? 'selected' : ''; ?>>Popularidade</option>
+                            <option value="melhores_notas" <?php echo ($ordenacao_selecionada == 'melhores_notas') ? 'selected' : ''; ?>>Melhores Notas</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
-    <div class="d-flex justify-content-between mb-4">
-        <form method="GET" class="d-inline-block">
-            <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
-            <input type="hidden" name="ordenacao" value="<?php echo $ordenacao_selecionada; ?>">
-            <div class="row align-items-center">
-                <div class="col-auto"><label for="quantidade" class="form-label mb-0">Filmes por página:</label></div>
-                <div class="col-auto">
-                    <select name="quantidade" id="quantidade" class="form-select" onchange="this.form.submit()">
-                        <option value="20" <?php echo ($quantidade == 20) ? 'selected' : ''; ?>>20</option>
-                        <option value="30" <?php echo ($quantidade == 30) ? 'selected' : ''; ?>>30</option>
-                        <option value="50" <?php echo ($quantidade == 50) ? 'selected' : ''; ?>>50</option>
-                    </select>
-                </div>
-            </div>
-        </form>
-        <form method="GET" class="d-inline-block">
-            <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
-            <input type="hidden" name="quantidade" value="<?php echo $quantidade; ?>">
-            <div class="row align-items-center">
-                <div class="col-auto"><label for="ordenacao" class="form-label mb-0">Ordenar por:</label></div>
-                <div class="col-auto">
-                    <select name="ordenacao" id="ordenacao" class="form-select" onchange="this.form.submit()">
-                        <option value="alfabetica" <?php echo ($ordenacao_selecionada == 'alfabetica') ? 'selected' : ''; ?>>Ordem Alfabética</option>
-                        <option value="popularidade" <?php echo ($ordenacao_selecionada == 'popularidade') ? 'selected' : ''; ?>>Popularidade</option>
-                        <option value="melhores_notas" <?php echo ($ordenacao_selecionada == 'melhores_notas') ? 'selected' : ''; ?>>Melhores Notas</option>
-                    </select>
-                </div>
-            </div>
-        </form>
     </div>
 
-    <div class="row">
+<div class="container mt-5">
+
+  
+      <div class="row">
         <?php foreach ($filmes as $filme): ?>
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
                 <div class="movie-item text-center">
@@ -128,32 +132,32 @@ if (!empty($termo_busca) && !empty($filmes)) {
                         <img src="<?php echo htmlspecialchars($base_image_url . $filme->poster_path); ?>" class="img-fluid rounded small-poster" alt="<?php echo htmlspecialchars($filme->title); ?>">
                     </a>
                     <h5 class="mt-2 movie-title-list"><?php echo htmlspecialchars($filme->title); ?></h5>
-
                     <div class="rating-stars" data-movie-id="<?php echo $filme->id; ?>">
                         <?php
                             $nota_atual = $votos[$filme->id] ?? 0;
                             for ($i = 1; $i <= 5; $i++):
-                            $rated_class = ($i <= $nota_atual) ? 'rated' : '';
+                                $rated_class = ($i <= $nota_atual) ? 'rated' : '';
                         ?>
-                <span class="star <?php echo $rated_class; ?>" data-rating="<?php echo $i; ?>"></span>
-    <?php endfor; ?>
-</div>
+                            <span class="star <?php echo $rated_class; ?>" data-rating="<?php echo $i; ?>"></span>
+                        <?php endfor; ?>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 
-    <nav aria-label="Paginação de Filmes">
-        <ul class="pagination justify-content-center mt-4">
-            <li class="page-item <?php echo ($pagina_atual <= 1) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $pagina_atual - 1; ?><?php echo $parametros_paginacao; ?>">Anterior</a></li>
-            <?php for ($i = max(1, $pagina_atual - 8); $i <= min($pagina_atual + 8, $total_paginas); $i++): ?>
-                <li class="page-item <?php echo ($i == $pagina_atual) ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?><?php echo $parametros_paginacao; ?>"><?php echo $i; ?></a></li>
-            <?php endfor; ?>
-            <li class="page-item <?php echo ($pagina_atual >= $total_paginas) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $pagina_atual + 1; ?><?php echo $parametros_paginacao; ?>">Próxima</a></li>
-        </ul>
-    </nav>
-</div>
-
+    </div>
+<div class="footer-controls2">
+        <nav aria-label="Paginação de Filmes">
+            <ul class="pagination justify-content-center mt-4">
+                <li class="page-item <?php echo ($pagina_atual <= 1) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $pagina_atual - 1; ?><?php echo $parametros_paginacao; ?>">Anterior</a></li>
+                <?php for ($i = max(1, $pagina_atual - 8); $i <= min($pagina_atual + 8, $total_paginas); $i++): ?>
+                    <li class="page-item <?php echo ($i == $pagina_atual) ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?><?php echo $parametros_paginacao; ?>"><?php echo $i; ?></a></li>
+                <?php endfor; ?>
+                <li class="page-item <?php echo ($pagina_atual >= $total_paginas) ? 'disabled' : ''; ?>"><a class="page-link" href="?page=<?php echo $pagina_atual + 1; ?><?php echo $parametros_paginacao; ?>">Próxima</a></li>
+            </ul>
+        </nav>
+    </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const stars = document.querySelectorAll('.rating-stars .star');
