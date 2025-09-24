@@ -47,7 +47,7 @@ body.terror-page {
     background-color: #0d0d0d; 
     color: #f1f1f1;
     font-family: "Cinzel", serif;
-    background-image: url('imagens/fundo-terror.jpg');
+    background-image: url(../images/fundoterror.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -259,6 +259,21 @@ body.terror-page .page-title {
 /* ============================================= */
 
 /* Corpo da página Crime */
+
+body.crime-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: url('../images/tape.png') repeat-x;
+  background-size: auto 100%; /* ajustar se necessário */
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 1; /* fica acima do background, mas abaixo do container (ver próximo) */
+}
+
 body.crime-page {
     background-color: #121212; /* fundo escuro */
     background-image: url('../images/157.jpg'); 
@@ -269,6 +284,16 @@ body.crime-page {
     background-attachment: fixed;
 }
 
+.container-crime {
+    background: rgba(34, 40, 49, 0.92);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.37);
+    padding: 32px 24px;
+    max-width: 1250px;
+    margin: 40px auto;
+    position: relative;
+    z-index: 2;
+}
 
 /* Título principal */
 body.crime-page h1 {
@@ -762,3 +787,150 @@ body.thriller-page .pagination .page-item.active .page-link {
 /* ==================================================== */
 /* ========== ESTILOS DA CATEGORIA THRILLER =========== */
 /* ==================================================== */
+
+
+
+/* ============================================= */
+/* --- /* ====== GUEEERRRAAAA!!!!!! FIM ====== */
+/* ============================================= */
+
+body.guerra-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: url('../images/tape.png') repeat-x;
+  background-size: auto 100%; /* ajustar se necessário */
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 1; /* fica acima do background, mas abaixo do container (ver próximo) */
+}
+
+body.guerra-page {
+    background-color: #121212; /* fundo escuro */
+    background-image: url('../images/guerra.jpg'); 
+    color: #e5e5e5;
+    font-family: 'Roboto', sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container-guerra {
+    background: rgba(34, 40, 49, 0.92);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.37);
+    padding: 32px 24px;
+    max-width: 1250px;
+    margin: 40px auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Título principal */
+body.guerra-page h1 {
+    font-weight: 700;
+    color: #fffb00; /* vermelho intenso */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #1f77d0; /* azul policial */
+    display: inline-block;
+    padding-bottom: 5px;
+    text-shadow: 0 0 10px rgba(255, 238, 0, 0.7);
+}
+
+/* Cards de filmes */
+body.guerra-page .movie-card {
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid #333;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+body.guerra-page .movie-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.3),
+                0 0 15px rgba(31, 119, 208, 0.2);
+}
+
+/* Posters */
+body.guerra-page .small-poster {
+    border-radius: 8px;
+    border: 2px solid #222;
+    transition: transform 0.3s, box-shadow 0.3s;
+    filter: brightness(0.8);
+}
+
+body.guerra-page .small-poster:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(229, 214, 9, 0.5),
+                0 0 25px rgba(31, 119, 208, 0.3);
+                filter: brightness(1);
+}
+
+/* Títulos dos filmes */
+body.guerra-page .movie-title,
+body.guerra-page .movie-title-list {
+    color: #fff;
+    font-weight: 600;
+    margin-top: 8px;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+}
+
+/* Links */
+body.guerra-page a {
+    color: #e50914;
+    transition: color 0.2s;
+}
+
+body.guerra-page a:hover {
+    color: #1f77d0;
+    text-shadow: 0 0 6px #1f77d0;
+}
+
+/* Paginação */
+body.guerra-page .pagination .page-link {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: #fffb00;
+    transition: all 0.2s ease;
+}
+
+body.guerra-page .pagination .page-link:hover {
+    background-color: #1f77d0;
+    color: #fff;
+}
+
+body.guerra-page .pagination .page-item.active .page-link {
+    background-color: #e5e109;
+    border-color:#e5e109;
+    color: #fff;
+    font-weight: bold;
+}
+
+body.guerra-page .pagination .page-item.disabled .page-link {
+    background-color: #111;
+    border-color: #333;
+    color: #555;
+}
+
+body.guerra-page .btn-dark {
+ background: #1f1f1f;
+ border: 1px solid #fffb00;
+ color: #fffb00;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ padding: 6px 12px;
+ border-radius: 6px;
+ transition: all 0.3s;
+}
+
+body.guerra-page .btn-dark:hover {
+ background: #fffb00;
+ color: #000;
+ box-shadow: 0 0 10px #fffb00;
+}
+
+/* ====== GUEEERRRAAAA!!!!!! FIM ====== */
