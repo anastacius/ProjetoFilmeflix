@@ -70,7 +70,7 @@ if (!empty($termo_busca) && !empty($filmes)) {
 </head>
 <body class="<?php echo $pageClass; ?>">
 
-<div class="container mt-5">
+<div class="container-crime mt-5">
     
     <h1 class="text-center mb-4"><?php echo $titulo_pagina; ?></h1>
 
