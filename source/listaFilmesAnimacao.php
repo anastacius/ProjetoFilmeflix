@@ -69,7 +69,13 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
                     $filmes[] = (object)[ 'id' => 0, 'title' => 'N/A', 'poster_path' => '/placeholder.png'];
                 };
 
+            for ($pagina_atual = 1; $pagina_atual <= $total_paginas; $pagina_atual++);
+            $_GET['page'] = $pagina_atual;
+            if ($pagina_atual > $total_paginas) { $pagina_atual = $total_paginas; }
+            else if ($pagina_atual < 1) { $pagina_atual = 1;}
+
             ?>
+
             </div>
                 <form method="GET" class="mb-4">
                     <input type="hidden" name="busca" value="<?php echo htmlspecialchars($termo_busca); ?>">
@@ -100,6 +106,48 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
         <h5 class="mt-2 movie-title-list text-truncate" title="<?php echo htmlspecialchars($filme->title); ?>">
             <?php echo htmlspecialchars($filme->title); ?>
         </h5>
+        <script>
+    // Função para obter avaliação salva
+    function getRating(movieId) {
+        const ratings = JSON.parse(localStorage.getItem('movieRatings') || '{}');
+        return ratings[movieId] || 0;
+    }
+
+    // Função para salvar avaliação
+    function setRating(movieId, rating) {
+        const ratings = JSON.parse(localStorage.getItem('movieRatings') || '{}');
+        ratings[movieId] = rating;
+        localStorage.setItem('movieRatings', JSON.stringify(ratings));
+    }
+
+    // Atualiza visual das estrelas
+    function updateStars(starContainer, rating) {
+        const stars = starContainer.querySelectorAll('.star');
+        stars.forEach((star, idx) => {
+            star.style.color = (idx < rating) ? '#FFD700' : '#ccc';
+        });
+    }
+
+    // Inicializa avaliações
+    document.querySelectorAll('.star-rating').forEach(function(container) {
+        const movieId = container.getAttribute('data-movie-id');
+        const currentRating = getRating(movieId);
+        updateStars(container, currentRating);
+
+        container.querySelectorAll('.star').forEach(function(star, idx) {
+            star.addEventListener('click', function() {
+                setRating(movieId, idx + 1);
+                updateStars(container, idx + 1);
+            });
+            star.addEventListener('mouseover', function() {
+                updateStars(container, idx + 1);
+            });
+            star.addEventListener('mouseout', function() {
+                updateStars(container, getRating(movieId));
+            });
+        });
+    });
+    </script>
     </div>
 </div>
         <?php endforeach; ?>
@@ -119,7 +167,7 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
                 <a class="page-link" href="?page=<?php echo $pagina_atual - 1; ?>">Anterior</a>
             </li>
             
-            <?php for ($i = max(1, $pagina_atual - 8); $i <= min($pagina_atual + 8, $total_paginas); $i++): ?>
+            <?php for ($i = max(1, $pagina_atual - 1); $i <= min($pagina_atual + 3, $total_paginas); $i++): ?>
                 <li class="page-item <?php echo ($i == $pagina_atual) ? 'active' : ''; ?>">
                     <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
                 </li>
@@ -130,6 +178,7 @@ $base_image_url = 'https://image.tmdb.org/t/p/w500';
             </li>
         </ul>
     </nav>
+    
 </div>
 
 </body>
